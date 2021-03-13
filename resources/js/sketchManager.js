@@ -26,7 +26,7 @@ module.exports = class SteckManager {
             return this.create(code);
         }
         console.log(`sketchManager.js: new sketch: ${code}`);
-        this.sketchs[code] = new Sketch(this, code, ['adminsHere']);
+        this.sketchs[code] = new Sketch(this, code);
 
         return this.sketchs[code];
     }

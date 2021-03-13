@@ -8,7 +8,20 @@ module.exports = function(router, sketchManager) {
 
     router.get('/', function(req, res) {
         // res.sendFile(path.join(__dirname, '/../views/index.html'));
-        res.render('home');
+        res.render('home', {
+            styles: [
+                'fromInsta/Consumer',
+                'fromInsta/ConsumerUICommons',
+                'fromInsta/FeedPageContainer',
+                'fromInsta/Consumer',
+                // 'fromInsta/ActivityFeedBox',
+                'fromInsta/ConsumerUICommons',
+                'fromInsta/FeedPageContainer',
+                'fromInsta/ProfilePageContainer',
+                'fromInsta/SettingsModules',
+                'vanilla/sketch'
+            ],
+        });
     });
 
     router.get('/profile/:sketch', function(req, res) {
@@ -26,7 +39,7 @@ module.exports = function(router, sketchManager) {
         if (sketch) {
             res.redirect(`/sketch/${sketch.code}`);
         } else {
-            res.redirect('/404' );
+            res.redirect('/' );
         }
     });
 
@@ -111,6 +124,7 @@ module.exports = function(router, sketchManager) {
 
 
     router.get('/:error', function(req, res) {
-        res.sendFile(path.join(__dirname, `/../views/${req.params.error}.html`));
+        res.redirect('/' );
+        // res.sendFile(path.join(__dirname, `/../views/${req.params.error}.html`));
     });
 };

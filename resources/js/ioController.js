@@ -20,11 +20,6 @@ module.exports = function(io, sketchManager) {
             socket.sketchCode = undefined
         });
 
-        socket.on('sketch.change', function(sketch) {
-
-            io.sockets.to(socket.sketchCode).emit('sketch.change', sketch);
-        });
-
         socket.on('sketch.username.change', function(username) {
             socket.sketch.username =  username;
             socket.sketch.fetchedUser = undefined;
