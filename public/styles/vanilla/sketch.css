@@ -1,0 +1,35 @@
+body {
+    padding-top: 30px;
+}
+
+.cGcGK {
+    margin-right: 0;
+}
+
+
+*:focus {
+    outline: 0 !important;
+}
+
+.outlinedBox {
+    width: 100%;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    margin-bottom: 30px;
+    padding: 11px 12px;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#imgField {
+    display: none;
+}
+.actionLink, label[for="imgField"] {
+    cursor: pointer;
+    border: 1px solid rgba(219,219,219,1);
+    color: rgba(38,38,38,1) !important;
+    border-radius: 4px;
+    font-weight: 600;
+    padding: 5px 9px;
+    margin: 5px 4px;
+}
