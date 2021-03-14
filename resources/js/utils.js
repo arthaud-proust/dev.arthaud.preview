@@ -42,6 +42,9 @@ module.exports = {
             console.log(err);
         }
     },
+    rmdir: function(dir) {
+        fs.rmdirSync(dir, { recursive: true });
+    },
 
     dataURItoBlob: function (dataURI) {
         var byteStr;

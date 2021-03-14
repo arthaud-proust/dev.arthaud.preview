@@ -3,7 +3,8 @@
         <div class="outlinedBox">
             {{>actionLink link=sketch.links.edit text="Paramètres"}}
             {{>actionLink link="" text=sketch.codeText}}
-            {{>actionLink link="/" text="Quitter"}}
+            {{>closeSketch}}
+        </div>
         </div>
 
         <div class="outlinedBox">
@@ -140,7 +141,7 @@
                             <div class="QzzMF Igw0E IwRSH eGOV_ vwCYk" data-testid="post-comment-root">
                                 <span class="Jv7Aj mArmR MqpiF  ">
                                     <a class="FPmhX notranslate MBL3Z" title="{{ sketch.fetchedUser.username }}" tabindex="0">{{ sketch.fetchedUser.username }}</a>
-                                </span>&nbsp;<span class="_8Pl3R" id="description"><span>Description par défaut</span></span>
+                                </span>&nbsp;<span class="_8Pl3R" id="description"><span>{{ sketch.desc}}</span></span>
                             </div>
                         </div>
                         <div>

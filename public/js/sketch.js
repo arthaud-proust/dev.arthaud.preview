@@ -45,8 +45,10 @@ try {
 document.getElementById('editionSubmit').addEventListener('click', function(evt) {
     socket.emit('sketch.username.change', document.getElementById('username').value);
 });
+}catch(e){};
+try {
 document.getElementById('closeSketch').addEventListener('click', function() {
-    socket.emit('sketch.close');
     console.log('ee');
+    socket.emit('sketch.close');
 });
 }catch(e){};
