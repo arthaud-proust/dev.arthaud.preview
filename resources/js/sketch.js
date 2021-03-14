@@ -1,5 +1,6 @@
 const axios = require('axios');
 const path = require('path');
+const u = require('./utils');
 
 
 module.exports = class Sketch {
@@ -7,9 +8,12 @@ module.exports = class Sketch {
         this.sketchManager = sketchManager;
         this.code = code;
         this.codeText = "Code: "+code;
+
         this.imgVersion = 0;
         this.username = "arthau.d";
         this.links = {
+            folder: path.join(__dirname, '../../public/sketchs/'+this.code),
+            publicFolder: '/sketchs/'+this.code+'/',
             baseImg: '/sketchs/'+this.code+'.jpg',
             publicImg: '/sketchs/'+this.code+'.jpg',
             img: path.join(__dirname, '../../public/sketchs/'+this.code+'.jpg'),
@@ -21,6 +25,12 @@ module.exports = class Sketch {
             profile_pic_url: 'https://instagram.fcdg2-1.fna.fbcdn.net/v/t51.2885-19/s150x150/156523086_913119562838030_6495216512289878339_n.jpg?tp=1&_nc_ht=instagram.fcdg2-1.fna.fbcdn.net&_nc_ohc=RE8ChGUTA-0AX_S4tjI&oh=c3aab33d61fc527f54924291ce530c50&oe=60767574',
             full_name: 'Proust is back'
         };
+
+        this.imgs = [];
+        this.fillImgs();
+
+        u.mkdir(this.links.folder);
+
     }
 
     get json() {
@@ -29,6 +39,16 @@ module.exports = class Sketch {
             username: this.username,
             user: this.fetchedUser
         });
+    }
+
+    fillImgs() {
+        for(let n=0; n<10; n++) {
+            this.imgs.push({
+                version:0,
+                src: `${this.links.publicFolder}${n}.jpg`,
+                n
+            })
+        }
     }
 
     fetchUserIfNeeded() {
@@ -55,5 +75,9 @@ module.exports = class Sketch {
 
     updateImg() {
         this.links.publicImg = `${this.links.baseImg}?v=${++this.imgVersion}`
+    }
+
+    updateNImg(n) {
+        this.imgs[n].src = `${this.links.publicFolder}${n}.jpg?v=${++this.imgs[n].version}`
     }
 }

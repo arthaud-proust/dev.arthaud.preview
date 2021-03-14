@@ -24,6 +24,22 @@ module.exports = function(router, sketchManager) {
         });
     });
 
+
+    router.get('/msketch', function(req, res) {
+        res.render('msketch', {
+            styles: [
+                'fromInsta/Consumer',
+                // 'fromInsta/ActivityFeedBox',
+                'fromInsta/ConsumerUICommons',
+                'fromInsta/FeedPageContainer',
+                // 'fromInsta/FeedSidebarContainer',
+                'fromInsta/MobileAllCommentsPage',
+                // 'fromInsta/PostComments',
+                'vanilla/sketch'
+            ]
+        });
+    });
+
     router.get('/profile/:sketch', function(req, res) {
         res.sendFile(path.join(__dirname, '/../views/name.html'));
     });
@@ -45,7 +61,7 @@ module.exports = function(router, sketchManager) {
 
     router.get('/sketch/:code', function(req, res) {
         sketchManager.handle(req, res, function() {
-            res.render('sketch', {
+            res.render('msketch', {
                 styles: [
                     'fromInsta/Consumer',
                     // 'fromInsta/ActivityFeedBox',
@@ -69,7 +85,7 @@ module.exports = function(router, sketchManager) {
 
     router.get('/sketch/:code/edit', function(req, res) {
         sketchManager.handle(req, res, function() {
-            res.render('sketchEdition', {
+            res.render('msketchEdition', {
                 styles: [
                     'fromInsta/Consumer',
                     // 'fromInsta/ActivityFeedBox',
@@ -104,9 +120,6 @@ module.exports = function(router, sketchManager) {
                 else if (!req.file) {
                     return res.send('Please select an image to upload');
                 }
-                else if (err instanceof multer.MulterError) {
-                    return res.send(err);
-                }
                 else if (err) {
                     return res.send(err);
                 }
@@ -117,6 +130,37 @@ module.exports = function(router, sketchManager) {
             // sketch.changeImg(req.body.image);
         });
     });
+
+    router.post('/sketch/:code/upload/:n', function(req, res) {
+        sketchManager.handle(req, res, function(sketch) {
+
+            // let upload = multer({ storage: u.storage, fileFilter: u.imageFilter }).single(res.params.n);
+            let upload = multer({storage: multer.diskStorage({
+                destination: function(req, file, cb) {
+                    cb(null,  sketch.links.folder);
+                },
+                filename: function(req, file, cb) {
+                    cb(null, file.fieldname + path.extname(file.originalname));
+                }
+            }), fileFilter: u.imageFilter }).single(req.params.n);
+
+
+            upload(req, res, function(err) {
+                if (req.fileValidationError) {
+                    return res.send(req.fileValidationError);
+                }
+                else if (!req.file) {
+                    return res.send('Please select an image to upload');
+                }
+                else if (err) {
+                    return res.send(err);
+                }
+        
+                res.send({n:req.params.n});
+            });
+        });
+    });
+
 
     router.get('/sketch/:code/json', function(req, res) {
         res.send(sketchManager.getSketch(req.params.code).json);

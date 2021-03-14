@@ -34,6 +34,12 @@ module.exports = function(io, sketchManager) {
             io.sockets.to(socket.sketchCode).emit('sketch.image.change', socket.sketch.links.publicImg);
         });
 
+        socket.on('sketch.image.nchange', function(n) {
+            // socket.sketch.changeImg(img);
+            socket.sketch.updateNImg(n);
+            io.sockets.to(socket.sketchCode).emit('sketch.image.nchange', socket.sketch.imgs[n]);
+        });
+
         socket.on('sketch.close', function() {
             io.sockets.to(socket.sketchCode).emit('redirect', '/');
             socket.leave(socket.sketchCode);

@@ -17,7 +17,12 @@ sketchManager.create('AAAAA');
 app.engine('hbs', exphbs({
     defaultLayout: 'app',
     extname: '.hbs',
-    partialsDir: path.join(__dirname, '/views/partials/')
+    partialsDir: path.join(__dirname, '/views/partials/'),
+    helpers:{
+        "inc": function(value, options) {
+            return parseInt(value) + 1;
+        }
+    }
 }));
 app.set('view engine', 'hbs');
 

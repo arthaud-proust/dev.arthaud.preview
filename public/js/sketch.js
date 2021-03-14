@@ -12,31 +12,33 @@ socket.on("sketch.image.change", img=>{
     document.getElementById('imgElement').src=img;
 })
 
+socket.on("sketch.image.nchange", imgDetails=>{
+    console.log('img received');
+    console.log(imgDetails);
+    document.getElementById('img-'+imgDetails.n).src=imgDetails.src;
+})
+
 window.onunload = window.onbeforeunload = () => {
     socket.emit('leave');
     socket.close();
 };
 
-try {
+document.querySelectorAll('input[id^="imgField"]').forEach(imgField=> {
+    imgField.addEventListener('change', function(evt) {
 
-document.getElementById('imgField').addEventListener('change', function(evt) {
-
-    var formData = new FormData();
-    formData.append(sketchCode, document.getElementById('imgField').files[0]);
-    for (var value of formData.values()) {
-        console.log(value);
-     }
-    axios.post(`/sketch/${sketchCode}/upload`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-    }).then(r=>{
-        if(r.data == "all done") {
-            socket.emit('sketch.image.change');
-        }
-    });
-})
-}catch(e){};
+        var formData = new FormData();
+        formData.append(imgField.dataset.n, imgField.files[0]);
+        axios.post(`/sketch/${sketchCode}/upload/${imgField.dataset.n}`, formData, {
+            headers: {
+            'Content-Type': 'multipart/form-data'
+            }
+        }).then(r=>{
+            if(r.data.n) {
+                socket.emit('sketch.image.nchange', r.data.n);
+            }
+        });
+    })
+});
 
 
 try {
