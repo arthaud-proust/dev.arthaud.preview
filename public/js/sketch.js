@@ -52,3 +52,36 @@ document.getElementById('closeSketch').addEventListener('click', function() {
     socket.emit('sketch.close');
 });
 }catch(e){};
+
+
+
+try{
+    const innerViewer = document.querySelector('.vi798 ');
+    const viewer = document.querySelector('._97aPb ');
+    const nextViewBtn = document.querySelector('button._6CZji')
+    const prevViewBtn = document.querySelector('button.POSa_')
+    const dots = document.querySelectorAll('.Yi5aA ')
+
+    const handleViewChange = function() {
+        nextViewBtn.style=innerViewer.dataset.x == 9?"display:none":"display:block";
+        prevViewBtn.style=innerViewer.dataset.x == 0?"display:none":"display:block";
+        dots.forEach(dot=>dot.classList.remove('XCodT'));
+        dots[parseInt(innerViewer.dataset.x)].classList.add('XCodT');
+    }
+    // 
+    nextViewBtn.addEventListener('click', function() {
+        if(innerViewer.dataset.x == 9) return;
+        innerViewer.dataset.x = parseInt(innerViewer.dataset.x)+1;
+        innerViewer.style = `transition: transform 363.693ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s; transform: translateX( calc( ${innerViewer.dataset.x} * -360px) );`;
+        viewer.style = "overflow-x:hidden;";
+        handleViewChange()
+    })
+
+    prevViewBtn.addEventListener('click', function() {
+        if(innerViewer.dataset.x == 0) return;
+        innerViewer.dataset.x = parseInt(innerViewer.dataset.x)-1;
+        innerViewer.style = `transition: transform 363.693ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s; transform: translateX( calc( ${document.querySelector('.vi798 ').dataset.x} * -360px) );`;
+        viewer.style = "overflow-x:hidden;";
+        handleViewChange()
+    })
+}catch(e){};

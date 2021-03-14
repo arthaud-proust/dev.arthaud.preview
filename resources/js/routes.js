@@ -72,8 +72,24 @@ module.exports = function(router, sketchManager) {
                     // 'fromInsta/PostComments',
                     'vanilla/sketch'
                 ],
+                preJs: [
+                    // 'fromInsta/__d',
+                    // 'fromInsta/more',
+                ],
                 postJs: [
-                    'sketch'
+                    'sketch',
+
+                    // 'fromInsta/Vendor',
+                    // 'fromInsta/fr_FR',
+                    // 'fromInsta/ConsumerLibCommons',
+                    // 'fromInsta/ConsumerUiCommons',
+                    // 'fromInsta/Consumer',
+                    // 'fromInsta/FeedPageContainer',
+                    // 'fromInsta/FeedSidebarContainer',
+                    // 'fromInsta/PostModalEntrypoint',
+                    // 'fromInsta/DirectMQTT',
+                    // 'fromInsta/NewUserActivatorsUnit',
+
                 ],
                 comments: [
                     {author:'bob', content:'Jolie photo!'}

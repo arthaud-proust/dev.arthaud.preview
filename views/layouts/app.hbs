@@ -15,6 +15,10 @@
     {{#each styles}}
     <link rel="stylesheet" href="/styles/{{this}}.css">
     {{/each}}
+
+    {{#each preJs}}
+    <script src="/js/{{this}}.js"></script>
+    {{/each}}
 </head>
 <body>
     {{{body}}}
