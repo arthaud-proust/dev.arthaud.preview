@@ -67,10 +67,10 @@ module.exports = class Sketch {
                 resolve();
             } else {
                 console.log('Fetch user');
-                axios.get(`https://www.instagram.com/${this.username}/`)
+                axios.get(`https://www.instagram.com/${this.username}/`, { 'User-Agent': 'Mozilla/5.0' } )
                 .then(userInfoSource=>{
-                    console.log(userInfoSource);
                     const jsonData = userInfoSource.data.match(/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/)[1].slice(0, -1)
+                    console.log(jsonData);
                     const {username, profile_pic_url, full_name} = JSON.parse(jsonData).entry_data.ProfilePage[0].graphql.user;
                     this.fetchedUser = {username, profile_pic_url, full_name};
                     resolve();
