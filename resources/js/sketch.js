@@ -76,6 +76,7 @@ module.exports = class Sketch {
                     resolve();
                 })
                 .catch(e=>{
+                    console.log(e);
                     resolve();
                 })
             }
