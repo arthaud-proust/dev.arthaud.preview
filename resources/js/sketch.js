@@ -71,6 +71,7 @@ module.exports = class Sketch {
                     const jsonData = userInfoSource.data.match(/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/)[1].slice(0, -1)
                     const {username, profile_pic_url, full_name} = JSON.parse(jsonData).entry_data.ProfilePage[0].graphql.user;
                     this.fetchedUser = {username, profile_pic_url, full_name};
+                    console.log(this.fetchedUser);
                     resolve();
                 })
                 .catch(e=>{
