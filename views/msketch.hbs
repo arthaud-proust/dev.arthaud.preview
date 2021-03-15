@@ -1,7 +1,7 @@
 <div class="cGcGK l360 sketchView">
     <div style="flex-direction: column;">
         <div class="outlinedBox">
-            {{>actionLink link=sketch.links.edit text="Paramètres"}}
+            {{!-- {{>actionLink link=sketch.links.edit text="Paramètres"}} --}}
             {{>boxText text=sketch.codeText}}
             {{>closeSketch}}
         </div>
@@ -147,7 +147,7 @@
                             <div class="Igw0E IwRSH eGOV_ _4EzTm pjcA_ ">
                                 <a class="r8ZrO" tabindex="0">Afficher les <span>{{sketch.fakeComments}}</span> commentaires</a>
                             </div>
-                            {{#each comments}}
+                            {{#each sketch.comments}}
                             {{>comment comment=. }}
                             {{/each}}
                         </div>

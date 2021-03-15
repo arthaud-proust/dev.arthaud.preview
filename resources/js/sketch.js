@@ -14,6 +14,9 @@ module.exports = class Sketch {
         this.username = "arthau.d";
         this.likes = parseInt(Math.random()*1000);
         this.fakeComments = parseInt(Math.random()*100)
+        this.comments= [
+            {author:'jonnie_doe', content:'Jolie photo!'}
+        ]
         this.desc="Lorem ipsum dolor sit amet";
         this.links = {
             folder: path.join(__dirname, '../../public/sketchs/'+this.code),
@@ -25,8 +28,9 @@ module.exports = class Sketch {
             edit: `/sketch/${this.code}/edit`,
         }
         this.fetchedUser = {
-            username: 'arthau.d',
-            profile_pic_url: 'https://instagram.fcdg2-1.fna.fbcdn.net/v/t51.2885-19/s150x150/156523086_913119562838030_6495216512289878339_n.jpg?tp=1&_nc_ht=instagram.fcdg2-1.fna.fbcdn.net&_nc_ohc=RE8ChGUTA-0AX_S4tjI&oh=c3aab33d61fc527f54924291ce530c50&oe=60767574',
+            username: 'jhon_doe',
+            profile_pic_url: '/static/user.jpg',
+            // profile_pic_url: 'https://instagram.fcdg2-1.fna.fbcdn.net/v/t51.2885-19/s150x150/156523086_913119562838030_6495216512289878339_n.jpg?tp=1&_nc_ht=instagram.fcdg2-1.fna.fbcdn.net&_nc_ohc=RE8ChGUTA-0AX_S4tjI&oh=c3aab33d61fc527f54924291ce530c50&oe=60767574',
             full_name: 'Proust is back'
         };
 
@@ -70,7 +74,7 @@ module.exports = class Sketch {
                 axios.get(`https://www.instagram.com/${this.username}/`, { 'User-Agent': 'Mozilla/5.0' } )
                 .then(userInfoSource=>{
                     const jsonData = userInfoSource.data.match(/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/)[1].slice(0, -1)
-                    console.log(jsonData);
+                    // console.log(jsonData);
                     const {username, profile_pic_url, full_name} = JSON.parse(jsonData).entry_data.ProfilePage[0].graphql.user;
                     this.fetchedUser = {username, profile_pic_url, full_name};
                     resolve();

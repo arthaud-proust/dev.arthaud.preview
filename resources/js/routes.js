@@ -92,9 +92,6 @@ module.exports = function(router, sketchManager) {
                     // 'fromInsta/NewUserActivatorsUnit',
 
                 ],                
-                comments: [
-                    {author:'Jhon Doe', content:'Jolie photo!'}
-                ],
                 sketch: sketchManager.getSketch(req.params.code)
             });
         });
