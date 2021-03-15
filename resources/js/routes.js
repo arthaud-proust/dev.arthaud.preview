@@ -91,9 +91,9 @@ module.exports = function(router, sketchManager) {
                     // 'fromInsta/DirectMQTT',
                     // 'fromInsta/NewUserActivatorsUnit',
 
-                ],
+                ],                
                 comments: [
-                    {author:'bob', content:'Jolie photo!'}
+                    {author:'Jhon Doe', content:'Jolie photo!'}
                 ],
                 sketch: sketchManager.getSketch(req.params.code)
             });

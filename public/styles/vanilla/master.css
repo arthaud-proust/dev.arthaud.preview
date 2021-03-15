@@ -111,7 +111,7 @@ footer a {
 }
 
 input[type="text"] {
-    color: rgba(38,38,38,1) !important;
+    color: rgb(235, 235, 235) !important;
     border-bottom: 1px solid #FA7268 !important;
     position: relative !important;
     background: none;

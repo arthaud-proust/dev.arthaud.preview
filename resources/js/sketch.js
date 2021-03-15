@@ -11,7 +11,9 @@ module.exports = class Sketch {
 
         this.imgVersion = 0;
         this.username = "arthau.d";
-        this.desc="Description par défaut";
+        this.likes = parseInt(Math.random()*1000);
+        this.fakeComments = parseInt(Math.random()*100)
+        this.desc="Lorem ipsum dolor sit amet";
         this.links = {
             folder: path.join(__dirname, '../../public/sketchs/'+this.code),
             publicFolder: '/sketchs/'+this.code+'/',

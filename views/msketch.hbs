@@ -130,7 +130,7 @@
                 <section class="EDfFK ygqzn">
                     <div class="Igw0E IwRSH eGOV_ ybXk5 vwCYk">
                         <div class="Nm9Fw">
-                            <a class="zV_Nj" tabindex="0"><span>9 511</span> J’aime</a>
+                            <a class="zV_Nj" tabindex="0"><span>{{ sketch.likes}}</span> J’aime</a>
                         </div>
                     </div>
                 </section>
@@ -145,7 +145,7 @@
                         </div>
                         <div>
                             <div class="Igw0E IwRSH eGOV_ _4EzTm pjcA_ ">
-                                <a class="r8ZrO" tabindex="0">Afficher les <span>31</span> commentaires</a>
+                                <a class="r8ZrO" tabindex="0">Afficher les <span>{{sketch.fakeComments}}</span> commentaires</a>
                             </div>
                             {{#each comments}}
                             {{>comment comment=. }}
