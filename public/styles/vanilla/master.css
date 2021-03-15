@@ -5,3 +5,123 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
+main {
+    min-height: 100vh;
+    width: 100%;
+    background: url('/static/layered-waves-haikei-1.svg') center no-repeat ;
+    /* background: url('/static/circle-scatter-haikei.svg') center top no-repeat ; */
+    background-size: cover;
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    color: #8fa8bb;
+}
+.hero {
+    margin-top: 300px;
+    justify-self: center;
+    padding: 50px 5px 0 5px;
+    width: auto !important;
+    /* background: rgba(0,0,0,0.25); */
+    padding: 30px 30px;
+    border-radius: 20px;
+
+}
+.title {
+    color: #C62368;
+    font-size: 2rem;
+    padding-bottom: 1rem;
+    background: linear-gradient(
+        45deg
+        ,#FA7268,#C62368 70%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.desc {
+    font-size: 1.1rem;
+    line-height: 1.2;
+    padding-bottom: 1rem;
+    max-width: 50ch;
+    /* white-space: pre-wrap; */
+}
+
+.presentation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    padding: 30px 0 50px 0;
+}
+
+footer {
+    padding-top: 100px !important;
+    position: relative;
+    height: 600px;
+    width: 100%;
+    background: url('/static/layered-waves-haikei-2.svg') center no-repeat ;
+    background-size: cover;
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-evenly !important;
+    align-items: flex-start !important;
+}
+footer * {
+    font-size: 1.2rem !important;
+    color: #be8c89 !important;
+}
+
+footer a {
+    text-decoration: underline !important;
+    background: linear-gradient(
+        45deg
+        ,#FA7268,#C62368 40%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+
+.actionButton {
+    display: inline-block;
+    position: relative !important;
+    background: #FA7268;
+    background: linear-gradient(
+        125deg
+        ,#FA7268,#C62368 90%);
+    border: none;
+    border-radius: 10px;
+    padding: 15px 15px;
+    font-size: 1.2rem;
+    color: white;
+    cursor: pointer;
+    transition: .2s;
+    line-height: 18px !important;
+    margin: 5px 7px;
+}
+.separator {
+    padding: 15px 0;
+}
+.actionButton:hover {
+    background: linear-gradient(
+        125deg
+        ,#FA7268,#C62368 30%);
+}
+
+input[type="text"] {
+    color: rgba(38,38,38,1) !important;
+    border-bottom: 1px solid #FA7268 !important;
+    position: relative !important;
+    background: none;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    color: white;
+    transition: .2s;
+    margin: 5px 7px;
+}
+
+input[type="text"]:focus {
+    border-bottom: 2px solid #C62368 !important;
+}

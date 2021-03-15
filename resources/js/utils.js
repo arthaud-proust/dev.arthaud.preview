@@ -2,6 +2,21 @@ const path = require('path')
 const fs = require('fs');
 const multer = require('multer');
 
+const errors = {
+    400: {
+        title: 'Accès restreint',
+        desc: 'Vous n\'avez pas l\'autorisation d\'accéder à cette page'
+    },
+    404: {
+        title: 'Page introuvable',
+        desc: 'Cette page n\'existe pas'
+    },
+    500: {
+        title: 'Erreur interne',
+        desc: 'Le serveur a rencontré un problème'
+    },
+}
+
 module.exports = {
     storage: multer.diskStorage({
         destination: function(req, file, cb) {
@@ -61,5 +76,17 @@ module.exports = {
         }
     
         return new Blob([arr], {type:mimeStr});
+    },
+
+
+    getError: function(code) {
+        if(errors[code]) {
+            return errors[code]
+        } else {
+            return {
+                title: 'Une erreur est survenue',
+                desc: 'Veuillez réessayer plus tard avec cette page'
+            }
+        }
     }
 }

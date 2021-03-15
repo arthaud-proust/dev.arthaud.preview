@@ -55,7 +55,7 @@ module.exports = function(router, sketchManager) {
         if (sketch) {
             res.redirect(`/sketch/${sketch.code}`);
         } else {
-            res.redirect('/' );
+            res.redirect('/404' );
         }
     });
 
@@ -184,7 +184,22 @@ module.exports = function(router, sketchManager) {
 
 
     router.get('/:error', function(req, res) {
-        res.redirect('/' );
+        res.render('error', {
+            styles: [
+                'fromInsta/Consumer',
+                // 'fromInsta/ActivityFeedBox',
+                'fromInsta/ConsumerUICommons',
+                'fromInsta/FeedPageContainer',
+                'fromInsta/ProfilePageContainer',
+                'fromInsta/SettingsModules',
+                'vanilla/sketch'
+            ],
+            postJs: [
+                'sketch'
+            ],
+            error: u.getError(req.params.error)
+        });
+        // res.redirect('/' );
         // res.sendFile(path.join(__dirname, `/../views/${req.params.error}.html`));
     });
 };

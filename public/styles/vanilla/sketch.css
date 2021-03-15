@@ -1,6 +1,7 @@
-body {
+.sketchView {
     padding-top: 30px;
 }
+
 
 .l360 {
     width: 360px;
@@ -41,7 +42,7 @@ body {
 input[id^="imgField"] {
     display: none;
 }
-.actionLink, label[for^="imgField"] {
+.boxText, .actionLink, label[for^="imgField"] {
     cursor: pointer;
     border: 1px solid rgba(219,219,219,1);
     color: rgba(38,38,38,1) !important;
@@ -50,3 +51,7 @@ input[id^="imgField"] {
     padding: 5px 9px;
     margin: 5px 4px;
 }
+.boxText {
+    cursor: default;
+}
+
