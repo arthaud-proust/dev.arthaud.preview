@@ -31,6 +31,7 @@ main {
     color: #C62368;
     font-size: 2rem;
     padding-bottom: 1rem;
+    padding-top: 1rem;
     background: linear-gradient(
         45deg
         ,#FA7268,#C62368 70%);
