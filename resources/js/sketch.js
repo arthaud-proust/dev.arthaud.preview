@@ -50,7 +50,7 @@ module.exports = class Sketch {
         for(let n=0; n<10; n++) {
             this.imgs.push({
                 version:0,
-                src: `${this.links.publicFolder}${n}.jpg`,
+                src: `/static/bg${n}.svg`,
                 n
             })
         }
