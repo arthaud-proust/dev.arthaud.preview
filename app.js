@@ -21,6 +21,9 @@ app.engine('hbs', exphbs({
     helpers:{
         "inc": function(value, options) {
             return parseInt(value) + 1;
+        },
+        "ifNull": function(value, def) {
+            return value||def
         }
     }
 }));

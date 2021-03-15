@@ -21,6 +21,7 @@ module.exports = function(router, sketchManager) {
                 'fromInsta/SettingsModules',
                 'vanilla/sketch'
             ],
+            theme: '#BB004B'
         });
     });
 
