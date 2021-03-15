@@ -1,5 +1,8 @@
 
-
+updateProgressBarValue = function(n, avancement) {
+    document.querySelectorAll(`label[for^="imgField"]`)[n].classList.add('progressing')
+    document.querySelectorAll(`label[for^="imgField"] .progress`)[n].style.width = `${avancement}%`
+}
 
 socket.on("connect", () => {
     socket.emit('join', {sketchCode});
@@ -31,6 +34,13 @@ document.querySelectorAll('input[id^="imgField"]').forEach(imgField=> {
         axios.post(`/sketch/${sketchCode}/upload/${imgField.dataset.n}`, formData, {
             headers: {
             'Content-Type': 'multipart/form-data'
+            },
+            onUploadProgress: (progressEvent) => {
+                const totalLength = progressEvent.lengthComputable ? progressEvent.total : progressEvent.target.getResponseHeader('content-length') || progressEvent.target.getResponseHeader('x-decompressed-content-length');
+                console.log("onUploadProgress", totalLength);
+                if (totalLength !== null) {
+                    updateProgressBarValue(imgField.dataset.n, Math.round( (progressEvent.loaded * 100) / totalLength ));
+                }
             }
         }).then(r=>{
             if(r.data.n) {

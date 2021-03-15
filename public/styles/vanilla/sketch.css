@@ -43,6 +43,7 @@ input[id^="imgField"] {
     display: none;
 }
 .boxText, .actionLink, label[for^="imgField"] {
+    position: relative;
     cursor: pointer;
     border: 1px solid rgba(219,219,219,1);
     color: rgba(38,38,38,1) !important;
@@ -55,3 +56,20 @@ input[id^="imgField"] {
     cursor: default;
 }
 
+label[for^="imgField"] .progress {
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    background: #a9d2fc;
+    content: ' ';
+    top: 0;
+    left:0;
+    border-radius: 4px;
+    z-index: -1;
+}
+
+label[for^="imgField"].progressing {
+    padding: 6px 10px;
+    border: none;
+    /* background: #78e769; */
+}
