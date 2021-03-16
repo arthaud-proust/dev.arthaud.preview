@@ -30,23 +30,16 @@
     </div>
     <div class="_97aPb ">
         <div class="rQDP3">
-            <div class="pR7Pc">
-                <div class="tR2pe" style="padding-bottom: 100%;"></div>
-                <div class="Igw0E IwRSH eGOV_ O1flK D8xaz fm1AK TxciK yiMZG">
-                    <div class="EcJQs">
-                        <div class="ekfSF" role="presentation" style="">
-                            <div class="_9nCnY" style="">
-                                <ul class="vi798" data-x="0">
-                                    {{#each sketch.imgs}}
-                                    {{>mImage img=this n=@index }}
-                                    {{/each}}
-                                </ul>
-                            </div>
-                        </div>
-                        <button class="btnChangeView  _6CZji   " tabindex="-1"><div class="    coreSpriteRightChevron  "></div></button>
-                        <button class="btnChangeView POSa_    " tabindex="-1" style="display: none;"><div class="   coreSpriteLeftChevron   "></div></button>
-                    </div>
-                </div>
+            <div class="carrousel">
+                <ul class="carrousel-imgs" data-x="0">
+                    {{#each sketch.imgs}}
+                    {{>tmImage img=this n=@index }}
+                    {{/each}}
+                </ul>
+                <div class="carrousel-controls">
+                    <button class="btnChangeView  _6CZji   " tabindex="-1"><div class="    coreSpriteRightChevron  "></div></button>
+                    <button class="btnChangeView POSa_    " tabindex="-1" style="display: none;"><div class="   coreSpriteLeftChevron   "></div></button>
+                </div>  
             </div>
             <div class=" ijCUd _3eoV-  IjCL9 _19dxx  ">
                 <div class="Yi5aA XCodT"></div>
@@ -145,8 +138,5 @@
                     </div>
                 </section>
             </div>
-        </article>
-
-
-
+    </article>
 </div>  

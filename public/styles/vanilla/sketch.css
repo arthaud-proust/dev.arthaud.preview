@@ -73,3 +73,26 @@ label[for^="imgField"].progressing {
     border: none;
     /* background: #78e769; */
 }
+
+
+
+.carrousel {
+    position: relative !important;
+    height: auto;
+}
+
+.carrousel-imgs {
+    position: relative !important;
+    height: auto;
+    display: flex;
+    flex-flow: row nowrap;
+    overflow-x: hidden;
+}
+
+.carrousel-imgs .photo-container {
+    position: absolute;
+}
+
+.KL4Bh {
+    padding-bottom: 0;
+}
