@@ -169,7 +169,28 @@ try {
 const dots = document.querySelectorAll('.Yi5aA ')
 const innerViewer = document.querySelector('.vi798 ');
 const imgs = document.querySelectorAll('img[id^="img-"]');
-
+const save = document.getElementById('save');
 imgs.forEach(img=>img.addEventListener('load', baseHandleViewChange))
 baseHandleViewChange()
+save.addEventListener('click', function() {
+    console.log(imgs[innerViewer.dataset.x].src);
+    downloadImage(imgs[innerViewer.dataset.x].src);
 })
+// document.location.href=document.querySelectorAll('img[id^="img-"]')
+
+})
+
+
+
+async function downloadImage(imageSrc) {
+    const image = await fetch(imageSrc)
+    const imageBlog = await image.blob()
+    const imageURL = URL.createObjectURL(imageBlog)
+  
+    const link = document.createElement('a')
+    link.href = imageURL
+    link.download = 'image file name here'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+}
