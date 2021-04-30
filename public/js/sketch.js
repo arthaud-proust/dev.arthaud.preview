@@ -167,8 +167,8 @@ try {
 
 
 const dots = document.querySelectorAll('.Yi5aA ')
-const innerViewer = document.querySelector('.vi798 ');
-const imgs = document.querySelectorAll('img[id^="img-"]');
+window.innerViewer = document.querySelector('.vi798 ');
+window.imgs = document.querySelectorAll('img[id^="img-"]');
 const save = document.getElementById('save');
 imgs.forEach(img=>img.addEventListener('load', baseHandleViewChange))
 baseHandleViewChange()
@@ -178,6 +178,8 @@ save.addEventListener('click', function() {
 })
 // document.location.href=document.querySelectorAll('img[id^="img-"]')
 
+
+// end global scope
 })
 
 
@@ -189,7 +191,8 @@ async function downloadImage(imageSrc) {
   
     const link = document.createElement('a')
     link.href = imageURL
-    link.download = 'image file name here'
+    let g = imgs[innerViewer.dataset.x].src.split('/');
+    link.download = `${g[4]}-${(g[5].split('?'))[0]}`
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
