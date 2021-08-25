@@ -1,5 +1,6 @@
 const Sketch = require('./sketch');
-
+const fs = require('fs');
+const path = require('path');
 module.exports = class SteckManager {
     constructor() {
         this.codeChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
@@ -7,6 +8,7 @@ module.exports = class SteckManager {
         this.sketchs = {};
         this.members = [];
 
+        this.load();
     }
 
     validCode(code) {
@@ -15,6 +17,13 @@ module.exports = class SteckManager {
 
     sketchExist(code) {
         return Object.keys(this.sketchs).includes(code)
+    }
+
+    load() {
+        const sketchsCodes = fs.readdirSync( path.join(__dirname, '../../public/sketchs'))
+        for(let sketchCode of sketchsCodes) {
+            this.sketchs[sketchCode] = new Sketch(this, sketchCode);
+        }
     }
 
     create(code=null) {
@@ -28,6 +37,7 @@ module.exports = class SteckManager {
         console.log(`sketchManager.js: new sketch: ${code}`);
         this.sketchs[code] = new Sketch(this, code);
 
+        console.log(this.sketchs['AAAAA'])
         return this.sketchs[code];
     }
 

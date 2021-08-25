@@ -2,7 +2,7 @@ const axios = require('axios');
 const { userInfo } = require('os');
 const path = require('path');
 const u = require('./utils');
-
+const fs = require('fs');
 
 module.exports = class Sketch {
     constructor(sketchManager, code) {
@@ -35,7 +35,11 @@ module.exports = class Sketch {
         };
 
         this.imgs = [];
+        
+        // defaults imgs
         this.fillImgs();
+
+        this.loadImgs();
 
         u.mkdir(this.links.folder);
 
@@ -61,6 +65,20 @@ module.exports = class Sketch {
                 n
             })
         }
+    }
+
+    loadImgs() {
+        try {
+            const imgs = fs.readdirSync( this.links.folder );
+            console.log(imgs);
+            imgs.forEach(img=>{
+                let n = parseInt(img.split('.')[0])
+                this.updateNImg(n)
+            })
+        } catch(e) {
+
+        }
+
     }
 
     fetchUserIfNeeded() {
