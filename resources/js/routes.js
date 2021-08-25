@@ -48,19 +48,23 @@ module.exports = function(router, sketchManager) {
 
     router.post('/create', function(req, res) {
         const sketch = sketchManager.create(req.body.code);
-        res.redirect(`/sketch/${sketch.code}` );
+        res.redirect(`/s/${sketch.code}` );
     });
 
     router.post('/join', function(req, res) {
         let sketch = sketchManager.getSketch(req.body.code);
         if (sketch) {
-            res.redirect(`/sketch/${sketch.code}`);
+            res.redirect(`/s/${sketch.code}`);
         } else {
             res.redirect('/404' );
         }
     });
 
     router.get('/sketch/:code', function(req, res) {
+        res.redirect(`/s/${req.params.code}`)
+    })
+
+    router.get('/s/:code', function(req, res) {
         sketchManager.handle(req, res, function() {
             res.render('msketch', {
                 styles: [

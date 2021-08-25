@@ -42,11 +42,16 @@ module.exports = function(io, sketchManager) {
 
         socket.on('sketch.close', function() {
             io.sockets.to(socket.sketchCode).emit('redirect', '/');
-            socket.sketch.close();
-            socket.leave(socket.sketchCode);
-            sketchManager.delete(socket.sketchCode);
-            console.log(`sketch ${socket.sketchCode} ended`);
-            socket.sketch = undefined
+            try {
+                socket.sketch.close();
+                socket.leave(socket.sketchCode);
+                sketchManager.delete(socket.sketchCode);
+                console.log(`sketch ${socket.sketchCode} ended`);
+                socket.sketch = undefined
+            } catch(e) {
+                console.log('unable to delete sketch');
+            }
+
         });
         
     });

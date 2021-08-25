@@ -20,6 +20,10 @@ socket.on("connect", () => {
     console.log('joined');
 });
 
+socket.on("connect_error", (error) => {
+    console.log(error);
+});
+
 socket.on("sketch.image.change", img=>{
     console.log('img received');
     console.log(img);

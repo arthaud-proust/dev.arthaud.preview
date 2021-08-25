@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 module.exports = class SteckManager {
     constructor() {
-        this.codeChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
-        this.codeLen = 5;
+        this.codeChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789-';
+        this.codeLen = 6;
         this.sketchs = {};
         this.members = [];
 
@@ -12,7 +12,7 @@ module.exports = class SteckManager {
     }
 
     validCode(code) {
-        return /[ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789]{5}/g.test(code)
+        return /[ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789-]{6}/g.test(code)
     }
 
     sketchExist(code) {
@@ -37,7 +37,7 @@ module.exports = class SteckManager {
         console.log(`sketchManager.js: new sketch: ${code}`);
         this.sketchs[code] = new Sketch(this, code);
 
-        console.log(this.sketchs['AAAAA'])
+        // console.log(this.sketchs['AAAAA'])
         return this.sketchs[code];
     }
 

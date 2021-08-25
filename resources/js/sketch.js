@@ -70,7 +70,7 @@ module.exports = class Sketch {
     loadImgs() {
         try {
             const imgs = fs.readdirSync( this.links.folder );
-            console.log(imgs);
+            // console.log(imgs);
             imgs.forEach(img=>{
                 let n = parseInt(img.split('.')[0])
                 this.updateNImg(n)
