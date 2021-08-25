@@ -76,7 +76,7 @@ module.exports = class Sketch {
                 this.updateNImg(n)
             })
         } catch(e) {
-
+            this.close()
         }
 
     }
