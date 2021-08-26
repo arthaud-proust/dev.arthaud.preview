@@ -1,7 +1,6 @@
 {
     "short_name": "Insta preview",
     "name": "Insta preview",
-    "hub_conform": true,
     "icons": [
         {
             "src": "/assets/img/favicon.ico",
