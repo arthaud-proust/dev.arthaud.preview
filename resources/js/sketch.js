@@ -19,6 +19,7 @@ module.exports = class Sketch {
         ]
         this.desc="Lorem ipsum dolor sit amet";
         this.links = {
+            shareUrl: `preview.arthaud.dev/s/${this.code}`,
             folder: path.join(__dirname, '../../public/sketchs/'+this.code),
             publicFolder: '/sketchs/'+this.code+'/',
             baseImg: '/sketchs/'+this.code+'.jpg',

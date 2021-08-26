@@ -10,6 +10,10 @@
     margin-right: 0;
 }
 
+.userAll {
+    user-select: all;
+}
+
 
 *:focus {
     outline: 0 !important;

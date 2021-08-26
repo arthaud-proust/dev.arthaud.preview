@@ -3,7 +3,8 @@ const fs = require('fs');
 const path = require('path');
 module.exports = class SteckManager {
     constructor() {
-        this.codeChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789-';
+        this.codeCharsMiddle = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789-';
+        this.codeChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
         this.codeLen = 6;
         this.sketchs = {};
         this.members = [];
@@ -28,8 +29,11 @@ module.exports = class SteckManager {
 
     create(code=null) {
         if(code==null || !this.validCode(code) || this.sketchExist(code)) {
-            code = Array(this.codeLen).fill('-').map(()=>{
-                return this.codeChars[Math.floor(Math.random()*this.codeChars.length)];
+            code = Array(this.codeLen).fill('-').map((e,i)=>{
+                return ( (i>0 && i<this.codeLen-1) 
+                    ? this.codeCharsMiddle[Math.floor(Math.random()* this.codeCharsMiddle.length)]
+                    : this.codeChars[Math.floor(Math.random()* this.codeChars.length)]
+                );
             }).join('');
 
             return this.create(code);

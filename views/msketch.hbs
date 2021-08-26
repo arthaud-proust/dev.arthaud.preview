@@ -2,7 +2,8 @@
     <div style="flex-direction: column;">
         <div class="outlinedBox">
             {{!-- {{>actionLink link=sketch.links.edit text="Paramètres"}} --}}
-            {{>boxText text=sketch.codeText}}
+            {{>boxText text=sketch.code}}
+            {{>sketchUrl url=sketch.links.shareUrl }}
             {{>closeSketch}}
         </div>
         </div>
