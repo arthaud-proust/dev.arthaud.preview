@@ -1,6 +1,7 @@
 {
     "short_name": "Insta preview",
     "name": "Insta preview",
+    "description": "Visualisez vos photo sur n'importe quel écran avant de les poster sur instagram",
     "icons": [
         {
             "src": "/assets/img/favicon.ico",
