@@ -59,6 +59,9 @@ input[id^="imgField"] {
 .boxText {
     cursor: default;
 }
+.noBorder {
+    border: none !important;
+}
 
 label[for^="imgField"] .progress {
     position: absolute;
