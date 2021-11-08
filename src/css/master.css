@@ -36,7 +36,6 @@ html{
     position: fixed;
 } 
 
-@layer components {
 
     .icon-open { content: url(/static/dots.svg); }
     .icon-share { content: url(/static/share.svg); }
@@ -189,7 +188,6 @@ html{
         width: 0%;
         @apply relative h-full;
     }
-}
 
 
 .gallery-grid + #carousel-controls {

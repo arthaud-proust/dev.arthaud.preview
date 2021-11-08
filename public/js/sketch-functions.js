@@ -70,19 +70,6 @@ function switchTo(mode) {
     }
 }
 
-function openIfPopup(el) {
-    if(el.classList.contains('popup') && !el.classList.contains('open')) {
-        const clone = el.cloneNode(true);
-        el.replaceWith(clone);
-        el = clone;
-        el.classList.add('open');
-    }
-    return el;
-}
-
-function closeIfPopup(el) {
-    if(el.classList.contains('popup') && el.classList.contains('open')) el.classList.remove('open');
-}
 
 function setActive(uuid) { // change img active in carousel
     if(uuid==='') return;
@@ -99,6 +86,7 @@ function setActive(uuid) { // change img active in carousel
     if(active) active.dataset.carouselActive = false;
     img.dataset.carouselActive = true;
     document.querySelector('#gallery').dataset.carouselI = Inew;
+    document.querySelector('#gallery').dataset.active = uuid;
 }
 function registerEventsForAllImage() {
     document.querySelectorAll('.image').forEach(img=>registerEventsForImage(img));
@@ -145,7 +133,7 @@ function registerEventsForImage(img) {
     img.addEventListener('contextmenu', function(e) {
         e.preventDefault();
         var popupEl = document.querySelector('#imageActionsPopup');
-        popupEl = openIfPopup(popupEl); // re assginement to keep same value (because of clone)
+        popupEl = openIfPopup(popupEl); // re assignement to keep same value (because of clone)
         popupEl.dataset.uuid = img.dataset.uuid;
         registerEventsImageActions(popupEl, img);
     })

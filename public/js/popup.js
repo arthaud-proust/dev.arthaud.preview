@@ -5,6 +5,23 @@ document.querySelectorAll('.popup .popup-outter').forEach(el=>{
 })
 
 
+function openIfPopup(el) {
+    if(el.classList.contains('popup') && !el.classList.contains('open')) {
+        const clone = el.cloneNode(true);
+        el.replaceWith(clone);
+        el = clone;
+        el.querySelector('.popup-outter').addEventListener('click',function(){
+            this.closest('.popup').classList.remove('open');
+        })
+        el.classList.add('open');
+    }
+    return el;
+}
+
+function closeIfPopup(el) {
+    if(el.classList.contains('popup') && el.classList.contains('open')) el.classList.remove('open');
+}
+
 const editFileInput = document.getElementById('editFileInput');
 editFileInput.addEventListener('change', function() {
     document.querySelector('#editPopup').classList.remove('open');

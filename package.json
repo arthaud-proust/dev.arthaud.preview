@@ -2,6 +2,7 @@
     "dependencies": {
         "axios": "^0.21.1",
         "cors": "^2.8.5",
+        "cssnano": "^5.0.10",
         "dotenv": "^8.2.0",
         "express": "^4.17.1",
         "express-handlebars": "^5.2.1",
@@ -14,7 +15,7 @@
     "devDependencies": {
         "@babel/core": "^7.15.8",
         "@babel/preset-env": "^7.15.8",
-        "autoprefixer": "^10.3.7",
+        "autoprefixer": "^10.4.0",
         "css-loader": "^6.4.0",
         "postcss": "^8.3.9",
         "postcss-loader": "^6.2.0",
@@ -29,6 +30,7 @@
         "tailwind:build": "SET NODE_ENV=production&& npx tailwindcss -i ./src/css/tailwind.css -o ./public/css/tailwind.css --minify",
         "css:watch": "npx tailwindcss -i ./src/css/master.css -o ./public/css/master.css --watch",
         "css:build": "SET NODE_ENV=production&& npx tailwindcss -i ./src/css/master.css -o ./public/css/master.css --minify",
+        "css:build1": "SET NODE_ENV=production&& npx tailwindcss -i ./src/css/master.css -o ./public/css/master.css --minify",
         "app": "nodemon app.js",
         "app:online": "SET HOST=10.3.2.149&& nodemon app.js",
         "app:online2": "SET HOST=192.168.0.21&& nodemon app.js",
