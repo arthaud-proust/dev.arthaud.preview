@@ -10,10 +10,10 @@ module.exports = class SketchImage {
         this._version = 1;
         // this._path = `https://picsum.photos/1000?random=${this._uuid}`;
         // this._path = `https://picsum.photos/700`;
-        // this._path = `/static/default.jpg`;
+        this._path = `/static/default.jpg`;
         // this._path = `/static/default${index}.jpg`;
         // this._path = `/static/default${1}.jpg`;
-        this._path = `https://eu.ui-avatars.com/api/?size=256&name=${index+1}`;
+        // this._path = `https://eu.ui-avatars.com/api/?size=256&name=${index+1}`;
         
     }
 

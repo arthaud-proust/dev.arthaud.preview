@@ -65,7 +65,7 @@ module.exports = class Sketch {
     }
 
     fillImgs() {
-        for(let n=0; n<5; n++) {
+        for(let n=0; n<2; n++) {
             this.createImg();
         }
         this.updateOrderedImgs();
