@@ -1,0 +1,58 @@
+.menu {
+    z-index: 2000;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* background: black; */
+    padding: 2rem;
+    opacity: 0.3;
+    transition: opacity .3s;
+}
+.menu:hover {
+    opacity: 0.7;
+}
+
+.menu .menu-items {
+    opacity: 0;
+    /* display: none; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    transition: opacity .3s;
+}
+
+.menu:hover .menu-items {
+    opacity: 1;
+}
+
+.menu-open, .menu-action {
+    position: relative;
+    height: 2.5rem;
+    width: 2.5rem;
+    margin: 0.5rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    /* background: rgba(255,255,255, 0.2); */
+    background: white;
+    transition: transform .1s, background-color .3s;
+}
+.menu-action {
+    cursor: pointer;
+    background: white;
+}
+.menu-action:hover {
+    transform: scale(1.1);
+}
+.menu-action:active {
+    transform: scale(0.9);
+}
+
+.menu-open { content: url(/static/dots.svg); }
+.menu-share { content: url(/static/share.svg); }
+.menu-download { content: url(/static/download.svg); }
+.menu-view-carousel { content: url(/static/view-carousel.svg); }
+.menu-view-grid { content: url(/static/view-grid.svg); }
+.menu-delete { content: url(/static/delete.svg); }
+/* .menu-open { content: url(/static/open.svg); } */
+

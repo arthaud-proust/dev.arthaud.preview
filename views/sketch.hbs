@@ -1,137 +1,31 @@
-<div class="cGcGK sketchView">
-    <div style="flex-direction: column;">
-        <div class="outlinedBox">
-            {{>imgForm}}
-            {{>actionLink link=sketch.links.edit text="Paramètres"}}
-            {{>actionLink link="" text=sketch.codeText}}
-            {{>actionLink link="/" text="Quitter"}}
+<script>
+    const newImageEl = `{{>sketchImage}}`
+</script>
+<main class="overflow-hidden min-h-screen flex">
+
+    {{>menu }}            
+
+    {{>popupShare}}
+    {{>popupDownload}}
+    {{>popupEdit}}
+    {{>popupImageActions}}
+
+
+    <div id="gallery" class="gallery-{{sketch.mode}}" data-active="{{sketch.active}}" data-mode="{{sketch.mode}}" data-carousel-i="0" data-grid-i="0" data-sketch-code="{{sketch.code}}">
+        <div id="gallery-inner">
+            {{#each sketch.orderedImgs}}
+                {{>sketchImage img=this }}
+            {{/each}}
+            {{!-- <div> --}}
+                {{!-- <div class="image-action image-add icon-add"></div> --}}
+            {{!-- </div> --}}
         </div>
-        <article class="_8Rm4L M9sTE  L_LMM SgTZ1   ePUX4" role="presentation" tabindex="-1">
-            <header class="Ppjfr UE9AK  wdOqh">
-                <div class="Jv7Aj mArmR   pZp3x">
-                    <div class="RR-M-  mrq0Z" aria-disabled="true" role="button" tabindex="-1">
-                        <a class="_2dbep qNELH kIKUG" tabindex="0" style="width: 32px; height: 32px;">
-                            <img alt="Photo de profil de {{ sketch.fetchedUser.username }}" class="_6q-tv" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="{{ sketch.fetchedUser.profile_pic_url }}">
-                        </a>
-                    </div>
-                </div>
-                <div class="o-MQd z8cbW ">
-                    <div class=" RqtMr">
-                        <div class="e1e1d">
-                            <span class="Jv7Aj mArmR MqpiF  ">
-                                <a class="sqdOP yWX7d     _8A5w5   ZIAjV " tabindex="0">{{ sketch.fetchedUser.username }}</a>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="M30cS">
-                        <div></div>
-                        <div class="JF9hh"></div>
-                    </div>
-                </div>
-            </header>
-            <div class="MEAGs">
-                <button class="wpO6b  " type="button">
-                    <div class="QBdPU ">
-                        <div class="Igw0E rBNOH YBx95 _4EzTm" style="height: 24px; width: 24px;">
-                            <svg aria-label="Plus d’options" class="_8-yf5 " fill="#262626" height="16" viewBox="0 0 48 48" width="16"><circle clip-rule="evenodd" cx="8" cy="24" fill-rule="evenodd" r="4.5"></circle><circle clip-rule="evenodd" cx="24" cy="24" fill-rule="evenodd" r="4.5"></circle><circle clip-rule="evenodd" cx="40" cy="24" fill-rule="evenodd" r="4.5"></circle></svg>
-                        </div>
-                    </div>
-                </button>
-            </div>
-            <div class="_97aPb ">
-                <div role="button" class="ZyFrc" tabindex="0">
-                    <div class="eLAPa kPFhm">
-                        <div class="KL4Bh" style="padding-bottom: 100%;">
-                            {{!-- <img id="imgElement" alt="Aucune image" class="FFVAD" crossorigin="anonymous" decoding="auto" sizes="614px" srcset="https://instagram.fcdg3-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s640x640/159598704_243585814113460_8876203964244902467_n.jpg?tp=1&amp;_nc_ht=instagram.fcdg3-1.fna.fbcdn.net&amp;_nc_cat=104&amp;_nc_ohc=SuBlH2GYa6IAX_tIBvF&amp;oh=1e5a78ce14227fdb5fea39a090950377&amp;oe=607490B0 640w,https://instagram.fcdg3-1.fna.fbcdn.net/v/t51.2885-15/sh0.08/e35/s750x750/159598704_243585814113460_8876203964244902467_n.jpg?tp=1&amp;_nc_ht=instagram.fcdg3-1.fna.fbcdn.net&amp;_nc_cat=104&amp;_nc_ohc=SuBlH2GYa6IAX_tIBvF&amp;oh=561fd9c5b0d20c93550718266ca76a8f&amp;oe=60770E6C 750w,https://instagram.fcdg3-1.fna.fbcdn.net/v/t51.2885-15/fr/e15/s1080x1080/159598704_243585814113460_8876203964244902467_n.jpg?tp=1&amp;_nc_ht=instagram.fcdg3-1.fna.fbcdn.net&amp;_nc_cat=104&amp;_nc_ohc=SuBlH2GYa6IAX_tIBvF&amp;oh=ee13756f398069e83251671ee0e2ec02&amp;oe=607758E7 1080w" src="{{ sketch.img }}" style="object-fit: cover;"> --}}
-                            <img id="imgElement" alt="Aucune image" class="FFVAD" crossorigin="anonymous" decoding="auto" sizes="614px"  src="{{ sketch.links.publicImg }}" style="object-fit: contain;">
-                        </div>
-                        <div class="_9AhH0"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="eo2As ">
-                <section class="ltpMr  Slqrh">
-                    <span class="fr66n">
-                        <button class="wpO6b  " type="button">
-                            <div class="QBdPU ">
-                                <span class="">
-                                    <svg aria-label="J’aime" class="_8-yf5 " fill="#262626" height="24" viewBox="0 0 48 48" width="24"><path d="M34.6 6.1c5.7 0 10.4 5.2 10.4 11.5 0 6.8-5.9 11-11.5 16S25 41.3 24 41.9c-1.1-.7-4.7-4-9.5-8.3-5.7-5-11.5-9.2-11.5-16C3 11.3 7.7 6.1 13.4 6.1c4.2 0 6.5 2 8.1 4.3 1.9 2.6 2.2 3.9 2.5 3.9.3 0 .6-1.3 2.5-3.9 1.6-2.3 3.9-4.3 8.1-4.3m0-3c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5.6 0 1.1-.2 1.6-.5 1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg>
-                                </span>
-                            </div>
-                        </button>
-                    </span>
-                    <span class="_15y0l">
-                        <button class="wpO6b" type="button">
-                            <div class="QBdPU ">
-                                <svg aria-label="Commenter" class="_8-yf5 " fill="#262626" height="24" viewBox="0 0 48 48" width="24"><path clip-rule="evenodd" d="M47.5 46.1l-2.8-11c1.8-3.3 2.8-7.1 2.8-11.1C47.5 11 37 .5 24 .5S.5 11 .5 24 11 47.5 24 47.5c4 0 7.8-1 11.1-2.8l11 2.8c.8.2 1.6-.6 1.4-1.4zm-3-22.1c0 4-1 7-2.6 10-.2.4-.3.9-.2 1.4l2.1 8.4-8.3-2.1c-.5-.1-1-.1-1.4.2-1.8 1-5.2 2.6-10 2.6-11.4 0-20.6-9.2-20.6-20.5S12.7 3.5 24 3.5 44.5 12.7 44.5 24z" fill-rule="evenodd"></path></svg>
-                            </div>
-                        </button>
-                    </span>
-                    <span class="_5e4p">
-                        <button class="wpO6b" type="button">
-                            <div class="QBdPU ">
-                                <svg aria-label="Partager la publication" class="_8-yf5 " fill="#262626" height="24" viewBox="0 0 48 48" width="24"><path d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z"></path></svg>
-                            </div>
-                        </button>
-                    </span>
-                    <span class="wmtNn">
-                        <div>
-                            <div aria-disabled="false" role="button" tabindex="0">
-                                <button class="wpO6b  " type="button">
-                                    <div class="QBdPU ">
-                                        <svg aria-label="Enregistrer" class="_8-yf5 " fill="#262626" height="24" viewBox="0 0 48 48" width="24"><path d="M43.5 48c-.4 0-.8-.2-1.1-.4L24 29 5.6 47.6c-.4.4-1.1.6-1.6.3-.6-.2-1-.8-1-1.4v-45C3 .7 3.7 0 4.5 0h39c.8 0 1.5.7 1.5 1.5v45c0 .6-.4 1.2-.9 1.4-.2.1-.4.1-.6.1zM24 26c.8 0 1.6.3 2.2.9l15.8 16V3H6v39.9l15.8-16c.6-.6 1.4-.9 2.2-.9z"></path></svg>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-                    </span>
-                </section>
-                <section class="EDfFK ygqzn">
-                    <div class="Igw0E IwRSH eGOV_ ybXk5 vwCYk">
-                        <div class="Nm9Fw">
-                            <a class="zV_Nj" tabindex="0"><span>9 511</span> J’aime</a>
-                        </div>
-                    </div>
-                </section>
-                <div class="EtaWk">
-                    <div class="Igw0E IwRSH eGOV_ _4EzTm">
-                        <div class="Igw0E IwRSH eGOV_ _4EzTm pjcA_">
-                            <div class="QzzMF Igw0E IwRSH eGOV_ vwCYk" data-testid="post-comment-root">
-                                <span class="Jv7Aj mArmR MqpiF  ">
-                                    <a class="FPmhX notranslate MBL3Z" title="{{ sketch.fetchedUser.username }}" tabindex="0">{{ sketch.fetchedUser.username }}</a>
-                                </span>&nbsp;<span class="_8Pl3R" id="description"><span>Description par défaut</span></span>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="Igw0E IwRSH eGOV_ _4EzTm pjcA_ ">
-                                <a class="r8ZrO" tabindex="0">Afficher les <span>31</span> commentaires</a>
-                            </div>
-                            {{#each comments}}
-                            {{>comment comment=. }}
-                            {{/each}}
-                        </div>
-                    </div>
-                </div>
-                <div class="k_Q0X I0_K8  NnvRN">
-                    <a class="c-Yi7" tabindex="0">
-                        <time class="_1o9PC Nzb55">il y a 2 heures</time>
-                    </a>
-                </div>
-                <section class="sH9wk  _JgwE ">
-                    <div class="RxpZH">
-                        <form class="X7cDz" method="POST">
-                            <button class="wpO6b  " type="button">
-                                <div class="QBdPU ">
-                                    <svg aria-label="Emoji" class="_8-yf5 " fill="#262626" height="24" viewBox="0 0 48 48" width="24"><path d="M24 48C10.8 48 0 37.2 0 24S10.8 0 24 0s24 10.8 24 24-10.8 24-24 24zm0-45C12.4 3 3 12.4 3 24s9.4 21 21 21 21-9.4 21-21S35.6 3 24 3z"></path><path d="M34.9 24c0-1.4-1.1-2.5-2.5-2.5s-2.5 1.1-2.5 2.5 1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5zm-21.8 0c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5-2.5-1.1-2.5-2.5zM24 37.3c-5.2 0-8-3.5-8.2-3.7-.5-.6-.4-1.6.2-2.1.6-.5 1.6-.4 2.1.2.1.1 2.1 2.5 5.8 2.5 3.7 0 5.8-2.5 5.8-2.5.5-.6 1.5-.7 2.1-.2.6.5.7 1.5.2 2.1 0 .2-2.8 3.7-8 3.7z"></path></svg>
-                                </div>
-                            </button>
-                            <div class="" style="right: 53px; bottom: 355px;"></div>
-                            <textarea aria-label="Ajouter un commentaire..." placeholder="Ajouter un commentaire..." class="Ypffh" autocomplete="off" autocorrect="off"></textarea>
-                            <button class="sqdOP yWX7d    y3zKF     " disabled="" type="submit">Publier</button>
-                        </form>
-                    </div>
-                </section>
-            </div>
-        </article>
     </div>
-</div>
+    <div id="carousel-controls" class="controls">
+        <div id="carouselLeft" class="carousel-arrow"></div>
+        <div id="carouselRight" class="carousel-arrow"></div>
+    </div>
+
+
+    {{>sketchCursor}}
+</main>

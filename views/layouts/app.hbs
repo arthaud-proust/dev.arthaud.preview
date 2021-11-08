@@ -7,14 +7,17 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="/js/socket.io.min.js"></script>
-    <script src="/js/base.js"></script>
+    <script src="/js/lib/chrono.js"></script>
+    <script src="/js/lib/axios.js"></script>
+    <script src="/js/lib/gsap.js"></script>
+    <script src="/js/lib/socket.io.min.js"></script>
+    {{!-- <script src="/js/base.js"></script> --}}
 
-    <link rel="stylesheet" href="/styles/vanilla/master.css">
+    <link rel="stylesheet" href="/css/tailwind.css">
+    <link rel="stylesheet" href="/css/master.css">
 
-    {{#each styles}}
-    <link rel="stylesheet" href="/styles/{{this}}.css">
+    {{#each css}}
+    {{!-- <link rel="stylesheet" href="/css/{{this}}.css"> --}}
     {{/each}}
 
     {{#each preJs}}
@@ -33,27 +36,27 @@
     <meta name="identifier-URL" content="https://preview.arthaud.dev">
     <link rel="canonical" href="https://preview.arthaud.dev" />
 
-    <title>Insta Preview</title>
+    <title>Preview by Arthaud</title>
     <meta name="subject" content="photography">
-    <meta name="description" content="Visualisez vos photos en temps réel depuis n'importe quel appareil avant de les poster sur instagram." />
+    <meta name="description" content="Visualisez vos photos en temps réel depuis n'importe quel appareil." />
     <meta name="theme-color" content="{{ifNull theme 'white' }}">
 
-    <meta property="og:title" content="Insta Preview" />
+    <meta property="og:title" content="Preview by Arthaud" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="Visualisez vos photos en temps réel depuis n'importe quel appareil avant de les poster sur instagram." />
-    <meta property="og:site_name" content="Insta Preview" />
+    <meta property="og:description" content="Visualisez vos photos en temps réel depuis n'importe quel appareil." />
+    <meta property="og:site_name" content="Preview by Arthaud" />
     <meta property="og:url" content="https://preview.arthaud.dev" />
     <meta property="og:locale" content="fr" />
     <meta property="og:image" content="https://arthaud.dev/assets/img/hero.png" />
 
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Insta Preview" />
-    <meta name="twitter:description" content="Visualisez vos photos en temps réel depuis n'importe quel appareil avant de les poster sur instagram." />
+    <meta name="twitter:title" content="Preview by Arthaud" />
+    <meta name="twitter:description" content="Visualisez vos photos en temps réel depuis n'importe quel appareil." />
     <meta name="twitter:site" content="https://preview.arthaud.dev" />
     <meta name="twitter:image" content="https://preview.arthaud.dev/assets/img/apple-touch-icon-180x180.png" />
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="Insta Preview" />
+    <meta name="apple-mobile-web-app-title" content="Preview by Arthaud" />
     <meta name="apple-mobile-web-app-status-bar-style" content="{{ifNull theme 'white' }}">
 
 
@@ -76,7 +79,7 @@
         {
             "@context": "http://schema.org",
             "@type": "Organization",
-            "name": "Insta Preview",
+            "name": "Preview by Arthaud",
             "url": "https://preview.arthaud.dev",
             "address": "Bordeaux",
             "sameAs": [
@@ -90,7 +93,7 @@
 
 
 </head>
-<body>
+<body class="relative h-screen w-screen bg-black bg-opacity-95 overflow-hidden">
     {{{body}}}
 
     {{#each postJs}}

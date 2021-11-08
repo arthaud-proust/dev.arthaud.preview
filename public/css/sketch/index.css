@@ -1,0 +1,21 @@
+@import url(view-carousel.css);
+@import url(view-grid.css);
+@import url(view-type.css);
+@import url(menu.css);
+
+body {
+    /* overflow: hidden; */
+    /* cursor: none; */
+    background: #0c0c0c;
+}
+
+#cursor {
+    --size: 40px;
+    position: fixed;
+    height: var(--size);
+    width: var(--size);
+    /* background: black; */
+    background: none;
+    border-radius: 100%;
+    border: 2px solid white;
+}

@@ -1,0 +1,45 @@
+- ## sketch
+    - ## .close ✅
+        - Desc : Go to homepage
+    - ## .join ✅
+        - Content :
+            - `<str>sketchCode` : code of the sketch
+        - Desc : Adds socket to clients
+    - ## .leave ✅
+        - Desc : Removes socket from clients
+- ## image
+    - ## .uploading ✅
+        - Content :
+            - `<str>uuid` : image identifier
+            - `<int>avancement` : percentage of uploading done
+        - Desc : Displays a loading bar or spinner
+    - ## .changed ✅
+        - Content :
+            - `<str>uuid` : identifiant de l'image
+            - `<str>path` : source de l'image
+            - `<int>version` : version de la nouvelle image
+        - Desc : Change les atributs de l'image
+    - ## .delete ✅
+        - Content :
+            - `<str>uuid` : identifiant de l'image
+        - Desc : Retire du DOM l'image corespondante
+    - ## .create ✅
+        - Desc : Ajoute une image
+- ## disposition 
+    - ## .change ✅
+        - Content : 
+            - `<str>image` : uuid de l'image qui change de place
+            - `<str>insertBefore` : l'image cible sera placée avant l'image qui a cet uuid 
+        - Desc : Change la disposition d'un image
+    - ## .switchTo ✅
+        - Content : 
+            - `<str>mode` : mode de disposition
+        - Desc : Change le mode de disposition
+    - ## .translateCarousel ✅
+        - Content : 
+            - `<int>direction`
+        - Desc : Affiche l'image précédente ou suivante
+    - ## .setActive 🪲
+        - Content : 
+            - `<str>uuid`
+        - Desc : Change l'image active

@@ -1,0 +1,65 @@
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: -10;
+    opacity: 0;
+}
+
+.popup .popup-outter {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0,0,0,0.6);
+}
+
+.popup .popup-inner {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 50vh;
+    left: 50vw;
+    max-width: 80vw;
+    max-height: 60vh;
+    transform: translate(-50%, -50%);
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: white;
+    
+    padding: 3rem;
+    border-radius: 2rem;
+}
+
+.popup .popup-title {
+    text-align: center;
+    font-size: 2.2rem;
+}
+
+.popup .popup-content {
+    position: relative;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    white-space: pre-wrap;
+    line-break: normal;
+}
+
+.popup.pop {
+    animation: pop 0.5s forwards;
+}
+
+@keyframes pop {
+    from {
+        z-index: -10;
+        opacity: 0;
+    }
+     
+    to {
+        z-index: 1000;
+        opacity: 1;
+    }
+}

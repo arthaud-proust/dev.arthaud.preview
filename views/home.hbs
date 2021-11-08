@@ -4,13 +4,15 @@
         <h1 class="title">Insta Preview v1.3</h1>
 
         <div class="presentation">
-            <form action="/create" method="POST">
+            <form action="/" method="POST">
+                <input type="hidden" name="action" value="create">
                 <input class="actionButton" type="submit" value="Commencer">
             </form>
 
             <span class="separator">ou</span>
 
-            <form action="/join" method="POST">
+            <form action="/" method="POST">
+                <input type="hidden" name="action" value="join">
                 <input type="text" name="code" id="code" autocomplete="off" placeholder="Code" maxlength="6">
                 <input class="actionButton" type="submit" value="Rejoindre">
             </form>
