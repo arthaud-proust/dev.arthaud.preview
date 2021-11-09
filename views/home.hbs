@@ -1,42 +1,46 @@
-<main>
-    <div class="cGcGK hero">
+<main class="pt-10 px-6 min-h-screen flex flex-col md:w-2/3 mx-auto">
+    <section class="py-10">
+        <h1 class="title text-6xl font-semibold py-2 leading-tight text-gray-900">La version <kbd>2.0</kbd> est là.</h1>
+        <span class="subtitle text-xl leading-tight py-4 text-gray-900 flex flex-col items-start">
+            <span>Une galerie améliorée </span>
+            <span>avec une interface plus intuitive</span>
+            <span>et un travail d'optimisation.</span>
+        </span>
+    </section>
     
-        <h1 class="title">Insta Preview v1.3</h1>
+    {{>sketchJoinCreate}}
+       
 
-        <div class="presentation">
-            <form action="/" method="POST">
-                <input type="hidden" name="action" value="create">
-                <input class="actionButton" type="submit" value="Commencer">
-            </form>
-
-            <span class="separator">ou</span>
-
-            <form action="/" method="POST">
-                <input type="hidden" name="action" value="join">
-                <input type="text" name="code" id="code" autocomplete="off" placeholder="Code" maxlength="6">
-                <input class="actionButton" type="submit" value="Rejoindre">
-            </form>
-        </div>
-
-        <p class="desc">
-            Visualisez vos photos en temps réel depuis n'importe quel appareil avant de les poster sur instagram.
+    <section class="py-10">
+        <h5 class="title text-4xl font-semibold pt-6 leading-tight text-gray-900">C'est quoi un "brouillon"?</h5>
+        <p class="text-xl leading-tight py-2 text-gray-900 flex flex-col items-start">
+            Un brouillon est une galerie photo que vous pouvez créer gratuitement. 
+        </p>
+        <p class="text-xl leading-tight py-2 text-gray-900 flex flex-col items-start">
+            Vous y ajoutez vos photos, les organisez, choisissez le mode d'affichage et partagez ensuite la galerie.
         </p>
 
-        <p class="desc">
-            En cliquant sur "commencer" vous créerez un sketch qui possède un code d'invitation que vous pouvez garder indéfiniment.
+        <h5 class="title text-4xl font-semibold pt-6 leading-tight text-gray-900">Pour quoi faire?</h5>
+        <p class="text-xl leading-tight py-2 text-gray-900 flex flex-col items-start">
+            Pour visualiser un ensemble de photo sur différents appareils, comparer instantannément les rendus sur des écrans différents.
         </p>
-        <p class="desc">
-            Pour rejoindre le sketch depuis un autre appareil, utilisez le code qui vous a été fourni.
+        <p class="text-xl leading-tight py-2 text-gray-900 flex flex-col items-start">
+            Pour afficher un carousel que l'on postera sur Instagram, ou visualiser son futur "feed". 
+        </p>    
+        <p class="text-xl leading-tight py-2 text-gray-900 flex flex-col items-start">
+            Ou pour transférer ou partager rapidement des photos.
+        </p>    
+
+        <h5 class="title text-4xl font-semibold pt-6 leading-tight text-gray-900">Comment ça marche?</h5>
+        <p class="text-xl leading-tight py-2 text-gray-900 flex flex-col items-start">
+            Après avoir créé un brouillon vous pouvez ajouter des images, changer leur disposition et en supprimer. 
+        </p>    
+        <p class="text-xl leading-tight py-2 text-gray-900 flex flex-col items-start">
+            Il ne vous reste ensuite plus qu'à rejoindre le brouillon avec un autre appareil pour comparer les photos, ou partager à des amis les photos.
+        </p>    
+        <p class="text-xl leading-tight py-2 text-gray-900 flex flex-col items-start">
+            Deux modes sont disponible dans un brouillon, le carousel et la grille (par défaut). Vous pouvez changer librement et réarranger les photos.
         </p>
-
-        
-
-
-    </div>
+    </section>
 </main>
-
-<footer class="bottomWave">
-    {{!-- <div class="container"> --}}
-        <span>Créé par <a href="https://arthaudproust.fr">Arthaud Proust</a></span>
-    {{!-- </div> --}}
-</footer>
+{{>footer}}

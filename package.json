@@ -28,9 +28,10 @@
     "scripts": {
         "tailwind:watch": "npx tailwindcss -i ./src/css/tailwind.css -o ./public/css/tailwind.css --watch",
         "tailwind:build": "SET NODE_ENV=production&& npx tailwindcss -i ./src/css/tailwind.css -o ./public/css/tailwind.css --minify",
-        "css:watch": "npx tailwindcss -i ./src/css/master.css -o ./public/css/master.css --watch",
-        "css:build": "SET NODE_ENV=production&& npx tailwindcss -i ./src/css/master.css -o ./public/css/master.css --minify",
-        "css:build1": "SET NODE_ENV=production&& npx tailwindcss -i ./src/css/master.css -o ./public/css/master.css --minify",
+        "css-sketch:watch": "npx tailwindcss -i ./src/css/sketch.css -o ./public/css/sketch.css --watch",
+        "css-sketch:build": "SET NODE_ENV=production&& npx tailwindcss -i ./src/css/sketch.css -o ./public/css/sketch.css --minify",
+        "css-home:watch": "npx tailwindcss -i ./src/css/home.css -o ./public/css/home.css --watch",
+        "css-home:build": "SET NODE_ENV=production&& npx tailwindcss -i ./src/css/home.css -o ./public/css/home.css --minify",
         "app": "nodemon app.js",
         "app:online": "SET HOST=10.3.2.149&& nodemon app.js",
         "app:online2": "SET HOST=192.168.0.21&& nodemon app.js",

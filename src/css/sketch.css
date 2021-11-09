@@ -1,0 +1,240 @@
+@media (orientation: landscape) {
+    :root {
+        --arrow-pos: -1.5;
+        --arrow-bottom: calc( 50% - var(--arrow-size) / 2 );
+    }
+}
+
+@media (orientation: portrait) {
+    :root {
+        --arrow-pos: 1;
+        --arrow-bottom: calc( 0.5 * var(--arrow-size) );
+    }
+}
+
+@screen max-md {
+    :root {
+        --arrow-size: 4rem;
+        --img-width : calc( 80vmin );
+    }
+}
+@screen md {
+    :root {
+        --arrow-size: 4rem;
+        --img-width : calc( 90vmin - 2 * var(--arrow-size) );
+    }
+}
+@screen lg {
+    :root {
+        --arrow-size: 4rem;
+        --img-width : calc( 100vmin - 2 * var(--arrow-size) );
+    }
+}
+
+html{
+    overflow-x:hidden;
+    position: fixed;
+} 
+body {
+    @apply relative h-screen w-screen bg-black bg-opacity-95 overflow-hidden;
+}
+
+
+.icon-open { content: url(/static/dots.svg); }
+.icon-share { content: url(/static/share.svg); }
+.icon-download { content: url(/static/download.svg); }
+.icon-upload { content: url(/static/upload.svg); }
+.icon-view-carousel { content: url(/static/view-carousel.svg); }
+.icon-view-grid { content: url(/static/view-grid.svg); }
+.icon-delete { content: url(/static/delete.svg); }
+.icon-edit { content: url(/static/edit.svg); }
+.icon-fullscreen { content: url(/static/fullscreen.svg); }
+.icon-add { content: url(/static/add.svg); }
+
+.cursor-none {
+    cursor: none;
+}
+
+#carouselLeft { 
+    left: calc(50vw - var(--img-width) / 2 + var(--arrow-pos) * var(--arrow-size) );
+    content: url(/static/arrow-left.svg);
+}
+#carouselRight { 
+    right: calc(50vw - var(--img-width) / 2 + var(--arrow-pos) * var(--arrow-size) );
+    content: url(/static/arrow-right.svg); 
+}
+
+.carousel-arrow {
+    height: var(--arrow-size);
+    width: var(--arrow-size);
+    bottom: var(--arrow-bottom);
+    @apply z-50 absolute right-10 bg-white rounded-full p-3 opacity-10 duration-200 cursor-pointer select-none;
+}
+.carousel-arrow:hover {
+    @apply opacity-100;
+}
+.carousel-arrow:active {
+    @apply transform-gpu scale-90;
+}
+
+.stack {
+    display: grid;
+}
+.stack > * {
+    grid-area: 1 / -1;
+}
+
+.-z-10 {z-index:-10}
+.-z-20 {z-index:-20}
+.-z-30 {z-index:-30}
+.-z-40 {z-index:-40}
+.-z-50 {z-index:-50}
+
+.popup {
+    @apply -z-50 fixed h-screen w-screen stack justify-center items-center opacity-0;
+}
+.popup.open {
+    z-index: 1000 !important;
+    opacity: 1;
+}
+
+.gallery-grid {
+    width: calc( 100vw + 30px);
+    counter-reset: nImg;
+    @apply absolute overflow-x-hidden overflow-y-auto h-screen;
+}
+
+.gallery-grid #gallery-inner {
+    /* transform: none !important; */
+    @apply relative flex flex-row w-screen min-h-screen flex-wrap items-start content-start overflow-hidden;
+}
+
+.gallery-carousel {
+    @apply self-center;
+}
+
+.gallery-carousel #gallery-inner {
+    padding-left: calc(50vw - var(--img-width) / 2 );
+    @apply flex flex-row self-center items-center overflow-hidden;
+}
+
+.menu {
+    @apply fixed top-0 left-0 flex flex-row flex-wrap p-4 z-50 opacity-30 hover:opacity-95 duration-300;
+}
+.menu:hover, .menu:hover .menu-actions {
+    @apply opacity-100;
+}
+.menu-actions {
+    @apply opacity-0 flex flex-row flex-wrap duration-300;
+}
+.menu-action {
+    @apply bg-white cursor-pointer m-1 rounded-xl h-10 w-10 p-2 md:rounded-2xl md:h-16 md:w-16 md:p-4 transform-gpu duration-100;
+}
+.menu-action:hover {
+    @apply scale-110;
+}
+.menu-action:active {
+    @apply scale-90;
+}
+
+
+.image-actions {
+    @apply h-auto w-auto grid duration-300 grid-cols-2 items-center justify-items-center gap-2;
+}
+.image-actions.normal {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 90%;
+    width: 90%;
+    max-height: 150px;
+    max-width: 150px;
+    @apply absolute hidden md:grid opacity-0;
+}
+
+.image-actions:hover {
+    @apply opacity-100;
+}
+
+.image-action {
+    @apply bg-white cursor-pointer rounded-2xl h-20 w-20 p-4 transform-gpu duration-100;
+}
+.image-actions.normal .image-action {
+    @apply h-full w-full;
+}
+
+.image-actions .image-action:hover {
+    @apply bg-gray-200;
+}
+.image-actions.normal .image-action:hover {
+    @apply bg-white scale-110;
+}
+.image-action:active {
+    @apply scale-90;
+}
+
+.image-loadBar {
+    display: none;
+    left: 5%;
+    width: 90%;
+    bottom: 5%;
+    overflow: hidden;
+    border-radius: 5px;
+    @apply absolute h-2 bg-white;
+}
+.image-loadBar.loading {
+    display: block;
+}
+
+.image-loadBar-bar {
+    background: #1f8cfb;
+    width: 0%;
+    @apply relative h-full;
+}
+
+
+.gallery-grid + #carousel-controls {
+    display: none !important;
+}
+
+.gallery-grid .image {
+    position: relative;
+    --size: calc(100vw / 3);
+    display: flex;
+    height: var(--size);
+    width: var(--size);
+    overflow: hidden;
+}
+
+.gallery-grid .image[data-carousel-active="true"] {
+    border: 3px solid white;
+}
+.gallery-grid .image .image-container {
+    height: var(--size);
+    width: var(--size);
+    overflow: hidden;
+}
+/* .gallery-grid .image .image-container::after {
+    counter-increment: nImg;
+    position: relative;
+    content: counter(nImg);
+    font-size: 3em;
+} */
+
+.gallery-carousel .image {
+    display: flex;
+    flex-shrink: 0;
+    position: relative;
+    display: flex;
+    height: var(--img-width);
+    width: var(--img-width);
+    overflow: hidden;
+    transition: opacity .2s;
+}
+.gallery-carousel .image[data-carousel-active="false"] {
+    opacity: 0.1;
+}
+/* .gallery-carousel .image[data-carousel-active="false"]:hover { */
+/* .gallery-carousel .image[data-carousel-active="true"]:hover ~ .image[data-carousel-active="false"] { */
+    /* opacity: 1; */
+/* } */

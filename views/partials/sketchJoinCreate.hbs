@@ -1,0 +1,18 @@
+<section class="flex flex-col items-start py-10">
+    <h4 class="subtitle text-xl leading-tight text-gray-900">Créez un brouillon, ajoutez-y des images,</h4>
+    <h2 class="subtitle text-4xl leading-tight pb-4 font-medium text-gray-900">Organisez, partagez.</h2>
+    <form action="/" method="POST" class="">
+        <input type="hidden" name="action" value="create">
+        <input class="actionBtn" type="submit" value="Commencer">
+    </form>
+</section>
+
+<section class="flex flex-col items-start py-10">
+    <h4 class="subtitle text-xl leading-tight text-gray-900">On vous a partagé le code?</h4>
+    <h2 class="subtitle text-4xl leading-tight pb-4 font-medium text-gray-900">Rejoignez un brouillon !</h2>
+    <form action="/" method="POST" class="bg-gray-900 rounded-lg flex flex-row max-w-full">
+        <input type="hidden" name="action" value="join">
+        <input class="text-xl bg-transparent min-w-0 pl-4 flex-1 flex-shrink text-white" type="text" name="code" id="code" autocomplete="off" placeholder="Entrez le code" maxlength="6">
+        <input class="actionBtn" type="submit" value="Rejoindre">
+    </form>
+</section>

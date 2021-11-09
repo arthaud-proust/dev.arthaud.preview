@@ -31,6 +31,9 @@ app.engine('hbs', exphbs({
         "isEqualToZero": function(value, def) {
             return value === 0;
         },
+        "year": function(value) {
+            return (new Date()).getFullYear();
+        },
         "hiddenIfNotEqual": function(value, options) {
             return value===options?'':'hidden'
         }

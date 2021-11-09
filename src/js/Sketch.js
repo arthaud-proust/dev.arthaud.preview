@@ -23,10 +23,11 @@ module.exports = class Sketch {
         this._mode = 'grid';
         this._active = '';
         
-        // defaults imgs
-        this.fillImgs();
-
         u.mkdir(this.paths.folder);
+
+        // defaults imgs
+        this.loadImgs();
+
 
     }
 
@@ -64,16 +65,27 @@ module.exports = class Sketch {
         u.rmdir(this.paths.folder);
     }
 
-    fillImgs() {
-        for(let n=0; n<2; n++) {
-            this.createImg();
+    loadImgs() {
+        const imgs = fs.readdirSync( this.paths.folder );
+        if(imgs.length>0) {
+            for(let img of imgs) {
+                this.createImg(img.split('.')[0]);
+            }
+        } else {
+            this.fillImgs();
         }
         this.updateOrderedImgs();
     }
 
+    fillImgs() {
+        for(let n=0; n<2; n++) {
+            this.createImg();
+        }
+    }
 
-    createImg() {
-        const newImage = new SketchImage(this.paths.imagesFolder, this._disposition.length);
+
+    createImg(imgUUID) {
+        const newImage = new SketchImage(this.paths.imagesFolder, this._disposition.length, imgUUID);
         this.imgs[newImage.getUuid()] = newImage;
         this._disposition.push(newImage.getUuid());
         this.updateOrderedImgs();

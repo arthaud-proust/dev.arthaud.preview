@@ -66,8 +66,9 @@ module.exports = class SteckManager {
     }
 
     handle(req, res, callback) {
+        if (typeof req.params.code === 'string' || req.params.code instanceof String) req.params.code = req.params.code.toUpperCase();
         if(req.params.code==null || !this.validCode(req.params.code) || !this.sketchExist(req.params.code)) {
-            res.redirect('/404' );
+            res.redirect('/error/404' );
         } else {
             callback(this.getSketch(req.params.code));
         }

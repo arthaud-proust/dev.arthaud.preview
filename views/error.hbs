@@ -1,14 +1,14 @@
-<div class="cGcGK hero">
-    <div style="flex-direction: column;">
+{{>header}}
+<main class="pt-10 px-6 min-h-screen flex flex-col md:w-2/3 mx-auto">
+    <section class="py-10">
+        <h1 class="title text-6xl font-semibold py-2 leading-tight text-gray-900">{{error.title}}</h1>
+        <span class="subtitle text-xl leading-tight py-4 text-gray-900 flex flex-col items-start">
+            <span>{{error.desc}}</span>
+        </span>
+    </section>
     
-        <h1 class="title">{{error.title}}</h1>
-        <p class="desc">
-            {{ error.desc}}
-        </p>
 
-
-        <div class="presentation">
-            <a href="/" class="actionButton">Page principale</a>
-        </div>
-    </div>  
-</div>
+    {{>sketchJoinCreate}}
+       
+</main>
+{{>footer}}

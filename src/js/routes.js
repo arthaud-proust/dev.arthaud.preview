@@ -12,6 +12,7 @@ module.exports = function(router, sketchManager) {
         // res.sendFile(path.join(__dirname, '/../views/index.html'));
         res.render('home', {
             css: [
+                'home'
                 // 'sketch/index'
             ],
             postJs: [
@@ -29,6 +30,7 @@ module.exports = function(router, sketchManager) {
             const sketch = sketchManager.create();
             res.redirect(`/${sketch.code}` );
         } else if(action === "join") {
+            if (typeof req.params.code === 'string' || req.params.code instanceof String) req.body.code = req.body.code.toUpperCase();
             if (sketchManager.sketchExist(req.body.code)) {
                 res.redirect(`/${req.body.code}`);
             } else {
@@ -44,8 +46,7 @@ module.exports = function(router, sketchManager) {
         sketchManager.handle(req, res, function(sketch) {
             res.render('sketch', {
                 css: [
-                    'sketch/index',
-                    'popup'
+                    'sketch',
                 ],
                 preJs: [],
                 postJs: [
@@ -95,13 +96,13 @@ module.exports = function(router, sketchManager) {
         });
     });
 
-    router.get('/:error', function(req, res) {
+    router.get('/error/:error', function(req, res) {
         res.render('error', {
             css: [
-                'sketch'
+                'home'
             ],
             postJs: [
-                'sketch'
+                'home'
             ],
             error: u.getError(req.params.error)
         });
