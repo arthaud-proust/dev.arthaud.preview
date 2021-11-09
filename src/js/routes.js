@@ -18,7 +18,7 @@ module.exports = function(router, sketchManager) {
             postJs: [
                 'home'
             ],
-            theme: '#BB004B'
+            theme: '#FDF9F3'
         });
     });
 
@@ -104,7 +104,8 @@ module.exports = function(router, sketchManager) {
             postJs: [
                 'home'
             ],
-            error: u.getError(req.params.error)
+            error: u.getError(req.params.error),
+            theme: "#FDF9F3"
         });
         // res.redirect('/' );
         // res.sendFile(path.join(__dirname, `/../views/${req.params.error}.html`));

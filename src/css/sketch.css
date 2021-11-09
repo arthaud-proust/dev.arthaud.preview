@@ -8,7 +8,7 @@
 @media (orientation: portrait) {
     :root {
         --arrow-pos: 1;
-        --arrow-bottom: calc( 0.5 * var(--arrow-size) );
+        --arrow-bottom: calc( 1.5 * var(--arrow-size) );
     }
 }
 
