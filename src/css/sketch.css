@@ -50,6 +50,7 @@ body {
 .icon-delete { content: url(/static/delete.svg); }
 .icon-edit { content: url(/static/edit.svg); }
 .icon-fullscreen { content: url(/static/fullscreen.svg); }
+.icon-exit-fullscreen { content: url(/static/exit-fullscreen.svg); }
 .icon-add { content: url(/static/add.svg); }
 
 .cursor-none {

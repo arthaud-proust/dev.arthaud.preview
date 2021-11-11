@@ -76,6 +76,19 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.menu-delete').addEventListener('click', function() {
         emitCloseSketch();
     })
+
+    document.querySelector('.menu-fullscreen').addEventListener('click', function(e) {
+        document.querySelector('main').requestFullscreen();
+        this.classList.add('hidden');
+        document.querySelector('.menu-exit-fullscreen').classList.remove('hidden');
+
+    });
+
+    document.querySelector('.menu-exit-fullscreen').addEventListener('click', function(e) {
+        document.querySelector('.menu-fullscreen').classList.remove('hidden');
+        this.classList.add('hidden');
+        document.exitFullscreen();
+    });
     
     
     document.addEventListener('contextmenu', function(e) {
