@@ -30,7 +30,7 @@ module.exports = function(router, sketchManager) {
             const sketch = sketchManager.create();
             res.redirect(`/${sketch.code}` );
         } else if(action === "join") {
-            if (typeof req.params.code === 'string' || req.params.code instanceof String) req.body.code = req.body.code.toUpperCase();
+            if (typeof req.body.code === 'string' || req.body.code instanceof String) req.body.code = req.body.code.toUpperCase();
             if (sketchManager.sketchExist(req.body.code)) {
                 res.redirect(`/${req.body.code}`);
             } else {
