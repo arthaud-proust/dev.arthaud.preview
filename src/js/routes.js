@@ -18,7 +18,7 @@ module.exports = function(router, sketchManager) {
             postJs: [
                 'home'
             ],
-            theme: '#FDF9F3'
+            theme: '#fdf9f3'
         });
     });
 
@@ -55,7 +55,8 @@ module.exports = function(router, sketchManager) {
                     'sketch-socket',
                     'popup',
                 ],                
-                sketch: sketch.getData()
+                sketch: sketch.getData(),
+                theme: '#fdf9f3'
             });
         });
     });
@@ -105,7 +106,7 @@ module.exports = function(router, sketchManager) {
                 'home'
             ],
             error: u.getError(req.params.error),
-            theme: "#FDF9F3"
+            theme: '#fdf9f3'
         });
         // res.redirect('/' );
         // res.sendFile(path.join(__dirname, `/../views/${req.params.error}.html`));

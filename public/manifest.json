@@ -1,7 +1,7 @@
 {
-    "short_name": "Insta preview",
-    "name": "Insta preview",
-    "description": "Visualisez vos photo sur n'importe quel écran avant de les poster sur instagram",
+    "short_name": "Galerie de pré-visualisation en temps réel",
+    "name": "Galerie de pré-visualisation en temps réel",
+    "description": "Visualisez, comparez, organisez, partagez vos photos depuis n'importe quel appareil.",
     "icons": [
         {
             "src": "/assets/img/favicon.ico",
