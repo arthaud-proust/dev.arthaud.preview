@@ -23,6 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
     setActive(document.getElementById('gallery').dataset.active);
     // handleArrowsForI();
     
+    document.querySelector('#menu .menu-open').addEventListener('click', function() {
+        toggleMenu();
+    })
+
     document.getElementById('carouselLeft').addEventListener('click', function() { 
         emitTranslateCarousel(-1);
     });

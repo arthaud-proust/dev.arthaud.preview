@@ -6,6 +6,10 @@ function getImageIndex(img) {
     return imgs.indexOf(img);
 }
 
+function toggleMenu() {
+    document.getElementById('menu').classList.toggle('mobile-open');
+}
+
 function handleArrowsForI(i=0) {
     if(isGalleryGrid()) {
         document.getElementById('carouselLeft').classList.add('hidden');

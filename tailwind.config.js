@@ -6,6 +6,10 @@ module.exports = {
     darkMode: false, // or 'media' or 'class'
     theme: {
         extend: {
+            colors: {
+                'peach': '#FDF9F3',
+                'peach-dark': '#f3e8db'
+            },
             screens: {
                 'max-sm': {'max': '630px'},
                 'max-md': {'max': '767px'},
