@@ -1,8 +1,8 @@
 <div class="popup" id="{{ id }}Popup">
-    <div class="h-screen w-screen bg-black bg-opacity-70 popup-outter"></div>
+    <div class="fixed top-0 left-0 h-screen w-screen bg-black bg-opacity-70 popup-outter"></div>
     <div class="popup-inner">
-        <div class="popup-title text-center text-2xl">{{ title }}</div>
-        <div class="popup-content text-center overflow-y-auto">
+        <div class="popup-title relative text-center text-2xl">{{ title }}</div>
+        <div class="popup-content">
             {{> @partial-block }}
         </div>
     </div>
