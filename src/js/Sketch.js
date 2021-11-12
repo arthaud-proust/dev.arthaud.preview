@@ -75,6 +75,7 @@ module.exports = class Sketch {
             this.fillImgs();
         }
         this.updateOrderedImgs();
+        this._active = this._orderedImgs[0].uuid;
     }
 
     fillImgs() {

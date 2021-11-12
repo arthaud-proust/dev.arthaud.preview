@@ -1,4 +1,4 @@
 node_modules
 .env
 public/sketchs/*
-package-lock.json
+./package-lock.json

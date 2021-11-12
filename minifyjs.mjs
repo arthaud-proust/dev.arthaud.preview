@@ -12,15 +12,15 @@ import * as fs from 'fs';
 const __dirname = path.resolve();
 
 const test = () => new Promise(async (resolve) => {
-    const folders = fs.readdirSync( path.join(__dirname, '/src/js/public') );
+    const folders = fs.readdirSync( path.join(__dirname, '/public/js/dist') );
     var entries = {};
 
     for(let folder of folders) {
-        const files = fs.readdirSync( path.join(__dirname, `/src/js/public/${folder}/`) );
+        const files = fs.readdirSync( path.join(__dirname, `/public/js/dist/${folder}/`) );
         for(let file of files) {
             entries[`${folder}-${file}`] = {
-                import: `./src/js/public/${folder}/${file}`,
-                filename: `/public/js/dist/${folder}/${file}`
+                import: `./public/js/dist/${folder}/${file}`,
+                filename: `/public/js/dist/${folder}/${file.split('.')[0]}-min.js`
             };
         }
     }

@@ -22,6 +22,9 @@ app.engine('hbs', exphbs({
     extname: '.hbs',
     partialsDir: path.join(__dirname, '/views/partials/'),
     helpers:{
+        "minIfProd": function() {
+            return process.env.ENV=="production"?'-min':'';
+        },
         "inc": function(value, options) {
             return parseInt(value) + 1;
         },

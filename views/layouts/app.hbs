@@ -21,7 +21,7 @@
     {{/each}}
 
     {{#each preJs}}
-    <script src="/js/dist/{{this}}.js"></script>
+    <script src="/js/dist/{{this}}{{minIfProd}}.js"></script>
     {{/each}}
 
 
@@ -97,7 +97,7 @@
     {{{body}}}
 
     {{#each postJs}}
-    <script src="/js/dist/{{this}}.js"></script>
+    <script src="/js/dist/{{this}}{{minIfProd}}.js"></script>
     {{/each}}
 </body>
 </html>

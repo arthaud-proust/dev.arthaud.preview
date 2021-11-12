@@ -1,1 +1,54 @@
-function openIfPopup(e){if(e.classList.contains("popup")&&!e.classList.contains("open")){const t=e.cloneNode(!0);e.replaceWith(t),(e=t).querySelector(".popup-outter").addEventListener("click",(function(){this.closest(".popup").classList.remove("open")})),e.classList.add("open")}return e}function closeIfPopup(e){e.classList.contains("popup")&&e.classList.contains("open")&&e.classList.remove("open")}document.querySelectorAll(".popup .popup-outter").forEach((e=>{e.addEventListener("click",(function(){this.parentElement.classList.remove("open")}))}));const editFileInput=document.getElementById("editFileInput");editFileInput.addEventListener("change",(function(){document.querySelector("#editPopup").classList.remove("open");var e=new FormData;const t=editFileInput.closest(".popup").dataset.imageUuid,n=document.getElementById("gallery").dataset.sketchCode;emitUploadingImage(t,0),e.append(t,editFileInput.files[0]),axios.post(`/${n}/upload/${t}`,e,{headers:{"Content-Type":"multipart/form-data"},onUploadProgress:e=>{const n=e.lengthComputable?e.total:e.target.getResponseHeader("content-length")||e.target.getResponseHeader("x-decompressed-content-length");if(null!==n){const o=Math.round(100*e.loaded/n);emitUploadingImage(t,o)}}}).then((e=>{if(e.data.done){const{uuid:t,path:n,version:o}=e.data;emitChangedImage(t,n,o)}}))}));
+document.querySelectorAll('.popup .popup-outter').forEach(el=>{
+    el.addEventListener('click',function(){
+        this.parentElement.classList.remove('open');
+    })
+})
+
+
+function openIfPopup(el) {
+    if(el.classList.contains('popup') && !el.classList.contains('open')) {
+        const clone = el.cloneNode(true);
+        el.replaceWith(clone);
+        el = clone;
+        el.querySelector('.popup-outter').addEventListener('click',function(){
+            this.closest('.popup').classList.remove('open');
+        })
+        el.classList.add('open');
+    }
+    return el;
+}
+
+function closeIfPopup(el) {
+    if(el.classList.contains('popup') && el.classList.contains('open')) el.classList.remove('open');
+}
+
+const editFileInput = document.getElementById('editFileInput');
+editFileInput.addEventListener('change', function() {
+    document.querySelector('#editPopup').classList.remove('open');
+    var formData = new FormData();
+
+    const imgUUID = editFileInput.closest('.popup').dataset.imageUuid;
+    const sketchCode = document.getElementById('gallery').dataset.sketchCode;
+
+    emitUploadingImage(imgUUID, 0);
+
+    formData.append(imgUUID, editFileInput.files[0]);
+    axios.post(`/${sketchCode}/upload/${imgUUID}`, formData, {
+        headers: {
+        'Content-Type': 'multipart/form-data'
+        },
+        onUploadProgress: (progressEvent) => {
+            const totalLength = progressEvent.lengthComputable ? progressEvent.total : progressEvent.target.getResponseHeader('content-length') || progressEvent.target.getResponseHeader('x-decompressed-content-length');
+            // console.log("onUploadProgress", totalLength);
+            if (totalLength !== null) {
+                const avancement = Math.round( (progressEvent.loaded * 100) / totalLength );
+                emitUploadingImage(imgUUID, avancement);
+            }
+        }
+    }).then(r=>{
+        if(r.data.done) {
+            const {uuid, path, version} = r.data;
+            emitChangedImage(uuid, path, version);
+        }
+    });
+})
