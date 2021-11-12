@@ -7,10 +7,13 @@
         "express": "^4.17.1",
         "express-handlebars": "^5.2.1",
         "handlebars": "^4.7.7",
+        "minify": "^8.0.3",
         "multer": "^1.4.2",
         "nodemon": "^2.0.7",
         "socket.io": "^4.0.0",
-        "uuid": "^8.3.2"
+        "try-to-catch": "^3.0.0",
+        "uuid": "^8.3.2",
+        "webpack": "^5.64.0"
     },
     "devDependencies": {
         "@babel/core": "^7.15.8",
@@ -26,6 +29,7 @@
         "webpack-dev-server": "^4.3.1"
     },
     "scripts": {
+        "build": "node minifyjs.mjs",
         "tailwind:watch": "npx tailwindcss -i ./src/css/tailwind.css -o ./public/css/tailwind.css --watch",
         "tailwind:build": "SET NODE_ENV=production&& npx tailwindcss -i ./src/css/tailwind.css -o ./public/css/tailwind.css --minify",
         "css-sketch:watch": "npx tailwindcss -i ./src/css/sketch.css -o ./public/css/sketch.css --watch",

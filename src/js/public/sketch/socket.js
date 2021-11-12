@@ -81,12 +81,14 @@ function emitChangeDisposition(image, insertBefore) {
     });
 }
 
-socket.on("disposition.switchTo", ({mode}) => {
+socket.on("disposition.switchTo", ({mode, translateTo}) => {
     switchTo(mode);
+    if(translateTo) setActive(translateTo, true);
 });
-function emitSwitchDisposition(mode) {
+function emitSwitchDisposition(mode, translateTo) {
     switchTo(mode);
-    socket.emit('disposition.switchTo', {mode});
+    if(translateTo) setActive(translateTo, true);
+    socket.emit('disposition.switchTo', {mode, translateTo});
 }
 
 socket.on("disposition.translateCarousel", ({direction}) => {
@@ -97,10 +99,10 @@ function emitTranslateCarousel(direction) {
     socket.emit('disposition.translateCarousel', {direction});
 }
 
-socket.on("disposition.setActive", ({uuid}) => {
-    setActive(uuid);
+socket.on("disposition.setActive", ({uuid, translate}) => {
+    setActive(uuid, translate);
 });
-function emitSetActive(uuid) {
-    setActive(uuid);
-    socket.emit('disposition.setActive', {uuid});
+function emitSetActive(uuid, translate) {
+    setActive(uuid, translate);
+    socket.emit('disposition.setActive', {uuid, translate});
 }

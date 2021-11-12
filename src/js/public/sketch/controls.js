@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         action.classList.toggle('hidden', action.dataset.actionName.includes(document.getElementById('gallery').dataset.mode));
     })
     
-    setActive(document.getElementById('gallery').dataset.active);
+    setActive(document.getElementById('gallery').dataset.active, true);
     // handleArrowsForI();
     
     document.querySelector('#menu .menu-open').addEventListener('click', function() {
@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     document.addEventListener('keydown', function(e) { 
         e = e || window.event;
-        console.log(e.key);
         switch(e.key) {
             case 'ArrowRight':
                 controls.setVisible(false);

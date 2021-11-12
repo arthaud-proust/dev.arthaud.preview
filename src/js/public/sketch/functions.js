@@ -1,16 +1,34 @@
-function getActiveCarouselImage() { return document.querySelector('.image[data-carousel-active="true"]') }
+// function getActiveCarouselImage() { return document.querySelector('.image[data-carousel-active="true"]') }
+function getActiveCarouselImage() { return getImageByUuid(document.getElementById('gallery').dataset.active) }
 function isGalleryCarousel() { return document.querySelector('#gallery').classList.contains('gallery-carousel') }
 function isGalleryGrid() { return document.querySelector('#gallery').classList.contains('gallery-grid') }
+function getImageByUuid(uuid) {
+    return document.querySelector(`.image[data-uuid="${uuid}"]`);
+}
+function getImageByIndex(i) {
+    return document.querySelectorAll(`.image`)[i];
+}
 function getImageIndex(img) {
     const imgs = Array.from(document.querySelectorAll('.image'));
     return imgs.indexOf(img);
+}
+function getImageIndexByUuid(uuid) {
+    const img = getImageByUuid(uuid);
+    return img?getImageIndex(img):-1;
+}
+
+function updateActiveImg() {
+    // de-active all img;
+    document.querySelectorAll('.image[data-active="true"]').forEach(img=>img.dataset.active = false);
+    const imgToSetActive = getActiveCarouselImage();
+    if(imgToSetActive) imgToSetActive.dataset.active = true;
 }
 
 function toggleMenu() {
     document.getElementById('menu').classList.toggle('mobile-open');
 }
 
-function handleArrowsForI(i=0) {
+function handleArrowsForI(i=document.getElementById('gallery').dataset.carouselI ) {
     if(isGalleryGrid()) {
         document.getElementById('carouselLeft').classList.add('hidden');
         document.getElementById('carouselRight').classList.add('hidden');
@@ -23,25 +41,29 @@ function handleArrowsForI(i=0) {
 
 function translateCarousel(direction) {
     if(isGalleryGrid()) return;
-    const iAfterTranslation = parseInt(document.querySelector('#gallery').dataset.carouselI)+direction;
+    console.log('translate '+direction);
+    const iBeforeTranslation = parseInt(document.querySelector('#gallery').dataset.carouselI)
+    const iAfterTranslation = iBeforeTranslation+direction;
     const maxI = document.querySelectorAll('.image').length-1;
     if(iAfterTranslation<0 || maxI<iAfterTranslation) return;
 
     handleArrowsForI(iAfterTranslation);
 
+    const newActive = document.querySelectorAll('.image')[iAfterTranslation];
+
+    emitSetActive(newActive.dataset.uuid, false);
     document.querySelector('#gallery').dataset.carouselI = iAfterTranslation;
 
-    const imageWidth = window.getComputedStyle(getActiveCarouselImage()).getPropertyValue('width');
-
+    const imageWidth = window.getComputedStyle(newActive).getPropertyValue('width');
     const newDist = parseInt(document.querySelector('#gallery').dataset.carouselI) * - parseInt(imageWidth.replace('px',''));
 
-
-
     gsap.to("#gallery-inner", {duration: 0.7, x: newDist, y:0});
-    document.querySelectorAll('.image')[document.querySelector('#gallery').dataset.carouselI-direction].dataset.carouselActive = false;
-    const newActive = document.querySelectorAll('.image')[document.querySelector('#gallery').dataset.carouselI];
-    newActive.dataset.carouselActive = true;
-
+}
+function translateCarouselTo(uuid) {
+    const Iactual = document.querySelector('#gallery').dataset.carouselI;
+    const Iactive = getImageIndexByUuid(uuid);
+    const diff = Iactive-Iactual;
+    translateCarousel(diff);
 }
 
 function translateGrid(direction) {
@@ -59,6 +81,7 @@ function translateGrid(direction) {
 }
 
 function switchTo(mode) {
+    // emitSetActive(getActiveCarouselImage().dataset.uuid);
     if(mode==='grid') {
         document.querySelector('#gallery').classList.replace('gallery-carousel', 'gallery-grid');
         document.getElementById('carousel-controls').classList.add('hidden');
@@ -70,27 +93,45 @@ function switchTo(mode) {
         document.getElementById('carousel-controls').classList.remove('hidden');
         document.querySelector('.menu-view-grid').classList.remove('hidden');
         document.querySelector('.menu-view-carousel').classList.add('hidden');
-        translateCarousel(0);
+        translateCarouselTo(document.querySelector('#gallery').dataset.active);
     }
 }
 
 
-function setActive(uuid) { // change img active in carousel
+function setActive(uuid, translate=false) { // change img active in carousel
     if(uuid==='') return;
-    const img = document.querySelector(`.image[data-uuid="${uuid}"]`);
-    if(!img.classList.contains('image')) return;
-    var imgs = Array.from(document.querySelectorAll('.image'));
-    const active = getActiveCarouselImage();
-    const Iactive = imgs.indexOf(active);
-    const Inew = imgs.indexOf(img);
+    const imgToSetActive = getImageByUuid(uuid);
+    if(!imgToSetActive || !imgToSetActive.classList.contains('image')) return;
+
+    document.getElementById('gallery').dataset.active = uuid;
+    updateActiveImg();
+
+    if(translate) translateCarouselTo(uuid);
+    // var imgs = Array.from(document.querySelectorAll('.image'));
+    // const oldActive = getActiveCarouselImage();
+
+    // console.log('new active');
+    // console.group('active');
+    // console.log(active.dataset.uuid);
+    // console.log(getImageIndex(active));
+    // console.groupEnd();
+
+    // const Iold = imgs.indexOf(oldActive);
+    // const Inew = imgs.indexOf(imgToSetActive);
+    // console.group('new');
+    // console.log(uuid);
+    // console.log(Inew);
+    // console.groupEnd();
     
-    emitTranslateCarousel(Inew-Iactive);
+    // console.log('translate: '+(Inew-Iold));
+    // if(Iold===Inew) return;
+    // if(translate) translateCarousel(Inew-Iold);
 
     
-    if(active) active.dataset.carouselActive = false;
-    img.dataset.carouselActive = true;
-    document.querySelector('#gallery').dataset.carouselI = Inew;
-    document.querySelector('#gallery').dataset.active = uuid;
+    // if(active) active.dataset.carouselActive = false;
+    // img.dataset.carouselActive = true;
+    // document.querySelector('#gallery').dataset.carouselI = Inew;
+    // document.querySelector('#gallery').dataset.active = uuid;
 }
 function registerEventsForAllImage() {
     document.querySelectorAll('.image').forEach(img=>registerEventsForImage(img));
@@ -100,8 +141,8 @@ function registerEventsImageActions(el) {
     el.querySelector('.image-fullscreen').addEventListener('click', function(e) {
         closeIfPopup(el);
 
-        emitSetActive(el.dataset.uuid);
-        emitSwitchDisposition('carousel');
+        emitSwitchDisposition('carousel', el.dataset.uuid);
+        // emitSetActive(el.dataset.uuid, true);
     });
     el.querySelector('.image-download').addEventListener('click', function(e) {
         closeIfPopup(el);
@@ -127,9 +168,9 @@ function registerEventsForImage(img) {
     img = clone;
     console.log('e');
     // img.parentNode.replaceChild
-    img.addEventListener('click', function(e) {
-        emitSetActive(img.dataset.uuid);
-    })
+    // img.addEventListener('click', function(e) {
+    //     emitSetActive(img.dataset.uuid);
+    // })
 
     registerEventsImageActions(img, img);
 
@@ -184,6 +225,8 @@ function moveImage(imageUUID, insertBeforeUUID) {
 
     imgs = Array.from(document.querySelectorAll('.image'));
     imgs[Iactive].dataset.carouselActive = true;
+
+    translateCarouselTo(imageUUID);
 }
 
 function setImageLoadingAvancement(uuid, avancement) {
@@ -215,6 +258,8 @@ function createImage(uuid, path, version) {
     updateImageData(uuid, path, version);
     // registerEventsForImage(newImage);
     registerEventsForAllImage();
+
+    handleArrowsForI();
 }
 
 async function downloadImage(imgUUID) {
@@ -232,94 +277,94 @@ async function downloadImage(imgUUID) {
 }
 
 function oldThings() {
-return
+    return
 
 
-try{
-    const viewer = document.querySelector('._97aPb ');
-    const nextViewBtn = document.querySelector('button._6CZji')
-    const prevViewBtn = document.querySelector('button.POSa_')
+    try{
+        const viewer = document.querySelector('._97aPb ');
+        const nextViewBtn = document.querySelector('button._6CZji')
+        const prevViewBtn = document.querySelector('button.POSa_')
 
-    const handleViewChange = function() {
-        nextViewBtn.style=innerViewer.dataset.x == 9?"display:none":"display:block";
-        prevViewBtn.style=innerViewer.dataset.x == 0?"display:none":"display:block";
-        baseHandleViewChange()
-    }
-    // 
-    nextViewBtn.addEventListener('click', function() {
-        if(innerViewer.dataset.x == 9) return;
-        innerViewer.dataset.x = parseInt(innerViewer.dataset.x)+1;
-        innerViewer.style = `transition: transform 363.693ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s; transform: translateX( calc( ${innerViewer.dataset.x} * -360px) );`;
-        viewer.style = "overflow-x:hidden;";
-        handleViewChange()
-    })
-
-    prevViewBtn.addEventListener('click', function() {
-        if(innerViewer.dataset.x == 0) return;
-        innerViewer.dataset.x = parseInt(innerViewer.dataset.x)-1;
-        innerViewer.style = `transition: transform 363.693ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s; transform: translateX( calc( ${document.querySelector('.vi798 ').dataset.x} * -360px) );`;
-        viewer.style = "overflow-x:hidden;";
-        handleViewChange()
-    })
-}catch(e){};
-
-
-try {
-    const handleViewChange = baseHandleViewChange
-    var ongoingTouches = [];
-    function ongoingTouchIndexById(idToFind) {
-        for (var i=0; i<ongoingTouches.length; i++) {
-        var id = ongoingTouches[i].identifier;
-    
-        if (id == idToFind) {
-            return i;
+        const handleViewChange = function() {
+            nextViewBtn.style=innerViewer.dataset.x == 9?"display:none":"display:block";
+            prevViewBtn.style=innerViewer.dataset.x == 0?"display:none":"display:block";
+            baseHandleViewChange()
         }
-        }
-        return -1;    // toucher non trouvé
-    }
-    document.querySelector('.ekfSF').addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        var touches = e.changedTouches;
+        // 
+        nextViewBtn.addEventListener('click', function() {
+            if(innerViewer.dataset.x == 9) return;
+            innerViewer.dataset.x = parseInt(innerViewer.dataset.x)+1;
+            innerViewer.style = `transition: transform 363.693ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s; transform: translateX( calc( ${innerViewer.dataset.x} * -360px) );`;
+            viewer.style = "overflow-x:hidden;";
+            handleViewChange()
+        })
 
-        ongoingTouches.push(touches[0]);
-    })
-
-    document.querySelector('.ekfSF').addEventListener('touchmove', function(e) {
-        if(Math.abs(ongoingTouches[0].pageY-e.changedTouches[0].pageY) > 30) {
-            return
-        }
-        let decal = document.querySelector('.vi798 ').dataset.x*-360+e.changedTouches[0].pageX-ongoingTouches[0].pageX
-        if(decal>0 || decal< -9*360) {
-            return
-        }
-        innerViewer.style = `transition: transform 363.693ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s; transform: translateX( calc( ${decal}px) );`;
-    })
-
-    document.querySelector('.ekfSF').addEventListener('touchend', function(e) {
-        var touches = e.changedTouches;
-
-        var idx = ongoingTouchIndexById(touches[0].identifier);
-    
-        let start = [ongoingTouches[0].pageX, ongoingTouches[0].pageY];
-        let end = [touches[0].pageX, touches[0].pageY];
-
-        if(end[0]-start[0] > 0) {
+        prevViewBtn.addEventListener('click', function() {
             if(innerViewer.dataset.x == 0) return;
             innerViewer.dataset.x = parseInt(innerViewer.dataset.x)-1;
             innerViewer.style = `transition: transform 363.693ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s; transform: translateX( calc( ${document.querySelector('.vi798 ').dataset.x} * -360px) );`;
+            viewer.style = "overflow-x:hidden;";
+            handleViewChange()
+        })
+    }catch(e){};
+
+
+    try {
+        const handleViewChange = baseHandleViewChange
+        var ongoingTouches = [];
+        function ongoingTouchIndexById(idToFind) {
+            for (var i=0; i<ongoingTouches.length; i++) {
+            var id = ongoingTouches[i].identifier;
+        
+            if (id == idToFind) {
+                return i;
+            }
+            }
+            return -1;    // toucher non trouvé
         }
-        if(end[0]-start[0] < 0) {
-            if(innerViewer.dataset.x == 9) return;
-            innerViewer.dataset.x = parseInt(innerViewer.dataset.x)+1;
-            innerViewer.style = `transition: transform 363.693ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s; transform: translateX( calc( ${document.querySelector('.vi798 ').dataset.x} * -360px) );`;
-        }
+        document.querySelector('.ekfSF').addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            var touches = e.changedTouches;
 
-        ongoingTouches = [];  // On enlève les point
+            ongoingTouches.push(touches[0]);
+        })
 
-        handleViewChange();
-    })
+        document.querySelector('.ekfSF').addEventListener('touchmove', function(e) {
+            if(Math.abs(ongoingTouches[0].pageY-e.changedTouches[0].pageY) > 30) {
+                return
+            }
+            let decal = document.querySelector('.vi798 ').dataset.x*-360+e.changedTouches[0].pageX-ongoingTouches[0].pageX
+            if(decal>0 || decal< -9*360) {
+                return
+            }
+            innerViewer.style = `transition: transform 363.693ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s; transform: translateX( calc( ${decal}px) );`;
+        })
 
-}catch(e){};
+        document.querySelector('.ekfSF').addEventListener('touchend', function(e) {
+            var touches = e.changedTouches;
+
+            var idx = ongoingTouchIndexById(touches[0].identifier);
+        
+            let start = [ongoingTouches[0].pageX, ongoingTouches[0].pageY];
+            let end = [touches[0].pageX, touches[0].pageY];
+
+            if(end[0]-start[0] > 0) {
+                if(innerViewer.dataset.x == 0) return;
+                innerViewer.dataset.x = parseInt(innerViewer.dataset.x)-1;
+                innerViewer.style = `transition: transform 363.693ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s; transform: translateX( calc( ${document.querySelector('.vi798 ').dataset.x} * -360px) );`;
+            }
+            if(end[0]-start[0] < 0) {
+                if(innerViewer.dataset.x == 9) return;
+                innerViewer.dataset.x = parseInt(innerViewer.dataset.x)+1;
+                innerViewer.style = `transition: transform 363.693ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s; transform: translateX( calc( ${document.querySelector('.vi798 ').dataset.x} * -360px) );`;
+            }
+
+            ongoingTouches = [];  // On enlève les point
+
+            handleViewChange();
+        })
+
+    }catch(e){};
 
 
 

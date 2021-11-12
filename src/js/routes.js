@@ -13,10 +13,10 @@ module.exports = function(router, sketchManager) {
         res.render('home', {
             css: [
                 'home'
-                // 'sketch/index'
             ],
             postJs: [
-                'home'
+                // 'home'
+                'home/index'
             ],
             theme: '#fdf9f3'
         });
@@ -50,10 +50,11 @@ module.exports = function(router, sketchManager) {
                 ],
                 preJs: [],
                 postJs: [
-                    'sketch-functions',
-                    'sketch-controls',
-                    'sketch-socket',
-                    'popup',
+                    // 'sketch'
+                    'sketch/socket',
+                    'sketch/functions',
+                    'sketch/controls',
+                    'sketch/popup',
                 ],                
                 sketch: sketch.getData(),
                 theme: '#fdf9f3'
@@ -103,7 +104,8 @@ module.exports = function(router, sketchManager) {
                 'home'
             ],
             postJs: [
-                'home'
+                // 'home'
+                'home/index'
             ],
             error: u.getError(req.params.error),
             theme: '#fdf9f3'
