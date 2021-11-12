@@ -18,6 +18,7 @@ const test = () => new Promise(async (resolve) => {
     for(let folder of folders) {
         const files = fs.readdirSync( path.join(__dirname, `/public/js/dist/${folder}/`) );
         for(let file of files) {
+            if(file.includes('-min')) continue;
             entries[`${folder}-${file}`] = {
                 import: `./public/js/dist/${folder}/${file}`,
                 filename: `/public/js/dist/${folder}/${file.split('.')[0]}-min.js`

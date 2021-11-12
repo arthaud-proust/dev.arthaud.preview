@@ -41,7 +41,7 @@ function handleArrowsForI(i=document.getElementById('gallery').dataset.carouselI
 
 function translateCarousel(direction) {
     if(isGalleryGrid()) return;
-    console.log('translate '+direction);
+    // console.log('translate '+direction);
     const iBeforeTranslation = parseInt(document.querySelector('#gallery').dataset.carouselI)
     const iAfterTranslation = iBeforeTranslation+direction;
     const maxI = document.querySelectorAll('.image').length-1;
@@ -166,7 +166,7 @@ function registerEventsForImage(img) {
     const clone = img.cloneNode(true);
     img.replaceWith(clone);
     img = clone;
-    console.log('e');
+    // console.log('e');
     // img.parentNode.replaceChild
     // img.addEventListener('click', function(e) {
     //     emitSetActive(img.dataset.uuid);
@@ -204,8 +204,8 @@ function registerEventsForImage(img) {
 
         const destination = IimgDragged>Itarget ? target : imgs[Itarget+1];
 
-        console.log(imgDragged);
-        console.log(destination);
+        // console.log(imgDragged);
+        // console.log(destination);
         if(!destination) return;
 
         emitChangeDisposition(imgDragged.dataset.uuid,destination.dataset.uuid);
@@ -215,7 +215,7 @@ function registerEventsForImage(img) {
 function moveImage(imageUUID, insertBeforeUUID) {
     const image = document.querySelector(`.image[data-uuid="${imageUUID}"]`);
     const insertBefore = document.querySelector(`.image[data-uuid="${insertBeforeUUID}"]`);
-    console.log(image);
+    // console.log(image);
 
     // var imgs = Array.from(document.querySelectorAll('.image'));
     // const Iactive = imgs.indexOf(getActiveCarouselImage());
