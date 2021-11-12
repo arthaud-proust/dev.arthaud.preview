@@ -5,6 +5,7 @@ body {
 
 kbd {
     background-color: #f3e8db;
+    white-space: pre;
     @apply rounded-xl px-3;
 }
 
