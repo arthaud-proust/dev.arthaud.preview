@@ -73,8 +73,19 @@ document.addEventListener('DOMContentLoaded', function() {
         emitSwitchDisposition('carousel');
     });
     document.querySelector('.menu-delete').addEventListener('click', function() {
-        emitCloseSketch();
+        var popupEl = document.querySelector('#deletePopup');
+        popupEl.classList.add('open')
+        // popupEl.dataset.uuid = img.dataset.uuid;
+        // emitCloseSketch();
     })
+
+    document.querySelector('#deletePopup .popup-action-cancel').addEventListener('click', function() {
+        document.querySelector('#deletePopup').classList.remove('open')
+    });
+    document.querySelector('#deletePopup .popup-action-confirm').addEventListener('click', function() {
+        emitCloseSketch();
+    });
+
 
     document.querySelector('.menu-fullscreen').addEventListener('click', function(e) {
         document.querySelector('main').requestFullscreen();

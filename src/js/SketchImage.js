@@ -1,7 +1,7 @@
 const { v1: uuidv1 } = require('uuid');
 
 module.exports = class SketchImage {
-    constructor(publicFolderPath, index=0, uuid=null) {
+    constructor(publicFolderPath, index=0, tuto=false, uuid=null) {
         this.publicFolderPath = publicFolderPath;
 
         this._uuid = uuid || uuidv1();
@@ -10,7 +10,7 @@ module.exports = class SketchImage {
         this._version = 1;
         // this._defaultPath = `https://picsum.photos/1000?random=${this._uuid}`;
         // this._defaultPath = `/static/default.jpg`;
-        this._defaultPath = `/static/help-${index}.jpg`;
+        this._defaultPath = tuto?`/static/help-${index}.jpg`:`/static/default.jpg`;
         // this._defaultPath = `/static/default${index}.jpg`;
         // this._defaultPath = `/static/default${1}.jpg`;
         // this._defaultPath = `https://eu.ui-avatars.com/api/?size=256&name=${index+1}`;

@@ -249,8 +249,17 @@ function updateImageData(uuid, path, version) {
 }
 
 function deleteImage(uuid) {
-    const image = document.querySelector(`.image[data-uuid="${uuid}"]`);
-    image.remove();
+    const img = document.querySelector(`.image[data-uuid="${uuid}"]`);
+    const i = getImageIndex(img);
+    const imgAfter = getImageByIndex(i+1);
+    const imgBefore = getImageByIndex(i-1);
+    if (imgAfter) {
+        emitSetActive(imgAfter.dataset.uuid)
+    } else if(imgBefore) {
+        translateCarouselTo(imgBefore.dataset.uuid)
+    }
+    img.remove();
+    handleArrowsForI();
 }
 function createImage(uuid, path, version) {
     document.getElementById('gallery-inner').innerHTML += newImageEl;
@@ -259,6 +268,9 @@ function createImage(uuid, path, version) {
     updateImageData(uuid, path, version);
     // registerEventsForImage(newImage);
     registerEventsForAllImage();
+
+    const imgs = Array.from(document.querySelectorAll('.image'));
+    translateCarouselTo(imgs[imgs.length-1].dataset.uuid);
 
     handleArrowsForI();
 }

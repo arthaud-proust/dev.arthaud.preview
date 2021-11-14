@@ -80,13 +80,13 @@ module.exports = class Sketch {
 
     fillImgs() {
         for(let n=0; n<3; n++) {
-            this.createImg();
+            this.createImg(true);
         }
     }
 
 
-    createImg(imgUUID) {
-        const newImage = new SketchImage(this.paths.imagesFolder, this._disposition.length, imgUUID);
+    createImg(tuto, imgUUID) {
+        const newImage = new SketchImage(this.paths.imagesFolder, this._disposition.length, tuto, imgUUID);
         this.imgs[newImage.getUuid()] = newImage;
         this._disposition.push(newImage.getUuid());
         this.updateOrderedImgs();
