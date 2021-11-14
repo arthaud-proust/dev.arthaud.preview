@@ -172,7 +172,7 @@ function registerEventsForImage(img) {
     //     emitSetActive(img.dataset.uuid);
     // })
 
-    registerEventsImageActions(img, img);
+    // registerEventsImageActions(img, img);
 
 
     img.addEventListener('contextmenu', function(e) {

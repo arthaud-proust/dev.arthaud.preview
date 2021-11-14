@@ -1,5 +1,5 @@
 <div class="image" draggable="true" data-active="{{#if (isEqualToZero img.index)}}true{{else}}false{{/if}}" data-src="{{img.path}}" data-version="{{img.version}}" data-uuid="{{img.uuid}}">
     <div class="image-container bg-center bg-no-repeat bg-cover h-full w-full" id="img-{{img.uuid}}" style="background-image: url({{img.path}})"></div>
-    {{>imageActions moreClass="normal"}}
+    {{!-- {{>imageActions moreClass="normal"}} --}}
     {{>imageLoadBar}}
 </div>

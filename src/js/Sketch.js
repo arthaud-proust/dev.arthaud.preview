@@ -20,7 +20,7 @@ module.exports = class Sketch {
         this.imgs = {};
         this._disposition = [];
         this._orderedImgs = [];
-        this._mode = 'grid';
+        this._mode = 'carousel';
         this._active = '';
         
         u.mkdir(this.paths.folder);
@@ -79,7 +79,7 @@ module.exports = class Sketch {
     }
 
     fillImgs() {
-        for(let n=0; n<2; n++) {
+        for(let n=0; n<3; n++) {
             this.createImg();
         }
     }

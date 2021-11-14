@@ -8,11 +8,13 @@ module.exports = class SketchImage {
         this._index = index;
         this._place = this._index*2;
         this._version = 1;
-        // this._path = `https://picsum.photos/1000?random=${this._uuid}`;
-        this._path = uuid?`${this.publicFolderPath}/${this._uuid}.jpg`:`/static/default.jpg`;
-        // this._path = `/static/default${index}.jpg`;
-        // this._path = `/static/default${1}.jpg`;
-        // this._path = `https://eu.ui-avatars.com/api/?size=256&name=${index+1}`;
+        // this._defaultPath = `https://picsum.photos/1000?random=${this._uuid}`;
+        // this._defaultPath = `/static/default.jpg`;
+        this._defaultPath = `/static/help-${index}.jpg`;
+        // this._defaultPath = `/static/default${index}.jpg`;
+        // this._defaultPath = `/static/default${1}.jpg`;
+        // this._defaultPath = `https://eu.ui-avatars.com/api/?size=256&name=${index+1}`;
+        this._path = uuid?`${this.publicFolderPath}/${this._uuid}.jpg`:this._defaultPath;
         
     }
 
