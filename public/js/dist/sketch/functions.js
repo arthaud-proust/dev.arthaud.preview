@@ -273,6 +273,12 @@ function createImage(uuid, path, version) {
     translateCarouselTo(imgs[imgs.length-1].dataset.uuid);
 
     handleArrowsForI();
+
+    // closeIfPopup(el);
+
+    var popupEl = document.querySelector('#editPopup');
+    popupEl.classList.add('open');
+    popupEl.dataset.imageUuid = uuid;
 }
 
 async function downloadImage(imgUUID) {
