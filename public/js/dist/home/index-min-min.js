@@ -1,1 +1,0 @@
-const codeInput=document.getElementById("code");codeInput.addEventListener("keyup",(function(){codeInput.classList.toggle("notempty",""!==codeInput.value)}));

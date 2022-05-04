@@ -16,11 +16,21 @@ module.exports = function(router, sketchManager) {
             ],
             postJs: [
                 // 'home'
+                'general/localStorage',
                 'home/index'
             ],
             theme: '#fdf9f3'
         });
     });
+
+    router.get('/exists/:code', function(req, res) {
+        // res.sendFile(path.join(__dirname, '/../views/index.html'));
+        res.send({
+            sketchAsked: req.params.code,
+            exists: sketchManager.sketchExist(req.params.code)
+        });
+    });
+
 
 
     // handle join and create
@@ -51,6 +61,7 @@ module.exports = function(router, sketchManager) {
                 preJs: [],
                 postJs: [
                     // 'sketch'
+                    'general/localStorage',
                     'sketch/socket',
                     'sketch/functions',
                     'sketch/controls',

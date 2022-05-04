@@ -13,7 +13,7 @@ kbd {
     @apply block px-4 py-3;
 }
 .actionBtn {
-    @apply  text-xl cursor-pointer bg-gray-900 rounded-lg px-5 py-3 text-white;
+    @apply text-xl cursor-pointer bg-gray-900 rounded-lg px-5 py-3 text-white;
 }
 .notempty {
     @apply uppercase;

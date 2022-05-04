@@ -1,8 +1,8 @@
 module.exports = {
-    purge: [
-        './views/**/*.hbs',
-        './src/**/*.js',
-    ],
+    // purge: [
+    //     './views/**/*.hbs',
+    //     './src/**/*.js',
+    // ],
     darkMode: false, // or 'media' or 'class'
     theme: {
         extend: {

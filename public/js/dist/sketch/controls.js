@@ -2,6 +2,8 @@ const chrono = new Chrono();
 chrono.init();
 
 document.addEventListener('DOMContentLoaded', function() {
+    appendToSketchCode(document.getElementById('gallery').dataset.sketchCode);
+
     const controls = {
         visible: true,
         setVisible: function (visible) {
