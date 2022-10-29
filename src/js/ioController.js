@@ -64,7 +64,7 @@ module.exports = function(io, sketchManager) {
         })
 
         socket.on('disposition.setActive', function(data) {
-            console.log(data);
+            // console.log(data);
             socket.sketch.setActive(data.uuid);
             socket.broadcast.to(socket.sketchCode).emit('disposition.setActive', data);
         })
